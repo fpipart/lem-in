@@ -6,7 +6,7 @@
 #    By: fpipart <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/18 10:59:14 by fpipart           #+#    #+#              #
-#    Updated: 2017/01/20 16:56:44 by fpipart          ###   ########.fr        #
+#    Updated: 2017/01/20 17:19:58 by fpipart          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ LIB = libft.a
 INC_PATH = ./includes/
 INC = lem_in.h
 
-#FLAGS = -Wextra -Werror -Wall
+FLAGS = -Wextra -Werror -Wall
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c $(INC_PATH)$(INC)
 	@mkdir -p $(OBJ_PATH)

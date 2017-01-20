@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 12:05:04 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/20 16:48:38 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/20 17:46:11 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ typedef struct			s_lem
 {
 		char			*room;
 		char			cmd[6];
-		int				coord_x;
-		int				coord_y;
+		int				crd_x;
+		int				crd_y;
 		int				busy;
 		struct s_list	*lst;
 		struct s_lem	*next;

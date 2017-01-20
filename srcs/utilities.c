@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 11:42:59 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/20 16:44:20 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/20 18:20:57 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,22 @@ int	addelem(t_lem **old, t_lem **new, t_store **store)
 
 	if (*old)
 	{
-		tmp = *new;
-		tmp->next = *old;
-		*old = tmp;
+		tmp = *old;
+		while (tmp &&
+		(((*new)->crd_x != tmp->crd_x || (*new)->crd_y != tmp->crd_y)))
+			tmp = tmp->next;
+		if (tmp)
+		{
+			(*new)->next = tmp->next;
+			tmp = *new;
+			*old = tmp;
+		}
+		else
+		{
+			tmp = *new;
+			tmp->next = *old;
+			*old = tmp;
+		}
 	}
 	else
 		*old = *new;
@@ -41,7 +54,7 @@ void	print_room(t_lem *room)
 		tmp = room;
 		while (tmp)
 		{
-			ft_printf("%d\n", tmp->room);
+			ft_printf("%s\n", tmp->room);
 			tmp = tmp->next;
 		}
 	}
