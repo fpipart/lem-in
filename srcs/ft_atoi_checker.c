@@ -6,13 +6,13 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/04 16:30:44 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/19 18:49:06 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/20 11:38:57 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../includes/lem_in.h"
 
-int		ft_atoi_checker(char *str, char **error)
+int		ft_atoi_checker(char *str, int *error)
 {
 	int i;
 	int sgn;
@@ -31,9 +31,7 @@ int		ft_atoi_checker(char *str, char **error)
 		res = res + str[i] - '0';
 		i++;
 	}
-	if (!str[i])
-		*error = NULL;
-	else
-		*error = "error";
+	if (str[i])
+		*error = 1;
 	return (res * sgn);
 }
