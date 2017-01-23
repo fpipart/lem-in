@@ -6,11 +6,31 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/04 16:30:44 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/20 11:38:57 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/23 14:18:32 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
+
+static int	check_int(char *str, int sgn)
+{
+	int i;
+
+	i = 0;
+	while (	str[i] < '0' || str[i] > '9')
+		str++;
+	while (str[i] >= '0' && str[i] <= '9')
+		i++;
+	if (i == 10 && sgn == 1)
+		if (ft_strcmp(str, "2147483647") > 0)
+			return (0);
+	if (i == 10 && sgn == -1)
+		if (ft_strcmp(str, "2147483648") > 0)
+			return (0);
+	if (i > 10)
+		return (0);
+	return (1);
+}
 
 int		ft_atoi_checker(char *str, int *error)
 {
@@ -31,7 +51,7 @@ int		ft_atoi_checker(char *str, int *error)
 		res = res + str[i] - '0';
 		i++;
 	}
-	if (str[i])
-		*error = 1;
+	if (str[i] || !check_int(str, sgn))
+		*error += 1;
 	return (res * sgn);
 }

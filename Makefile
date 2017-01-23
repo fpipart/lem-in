@@ -6,11 +6,11 @@
 #    By: fpipart <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/18 10:59:14 by fpipart           #+#    #+#              #
-#    Updated: 2017/01/20 17:19:58 by fpipart          ###   ########.fr        #
+#    Updated: 2017/01/23 12:55:44 by fpipart          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FILES = lemin.c utilities.c ft_atoi_checker.c
+FILES = lemin.c utilities.c utilities_tube.c ft_atoi_checker.c
 
 SRC_PATH = ./srcs/
 CFILES = $(FILES:%=./srcs/%)
