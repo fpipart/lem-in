@@ -6,11 +6,12 @@
 #    By: fpipart <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/18 10:59:14 by fpipart           #+#    #+#              #
-#    Updated: 2017/01/23 12:55:44 by fpipart          ###   ########.fr        #
+#    Updated: 2017/01/24 17:20:42 by fpipart          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FILES = lemin.c utilities.c utilities_tube.c ft_atoi_checker.c
+FILES = lemin.c utilities.c utilities_tube.c ft_atoi_checker.c	\
+		del_lst.c
 
 SRC_PATH = ./srcs/
 CFILES = $(FILES:%=./srcs/%)
@@ -27,7 +28,7 @@ LIB = libft.a
 INC_PATH = ./includes/
 INC = lem_in.h
 
-FLAGS = -Wextra -Werror -Wall
+FLAGS = -g #-Wextra -Werror -Wall
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c $(INC_PATH)$(INC)
 	@mkdir -p $(OBJ_PATH)

@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 14:28:17 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/23 19:05:46 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/24 19:26:10 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,31 +21,32 @@ static int	command(char *line, t_store *store)
 	return (0);
 }
 
-static int	handle_nbr(t_store **store, char **line, t_lem **lem, t_lem **cmd)
+static int	handle_nbr(t_store *store, char *line, t_lem **lem, t_lem **cmd)
 {
 	int error;
 
 	error = 0;
 	(void)cmd;
 	(void)lem;
-	if (*(*store)->cmd != '\0')
+	if (*(store)->cmd != '\0')
 		return (1);
-	(*store)->ants = ft_atoi_checker(*line, &error);
+	store->ants = ft_atoi_checker(line, &error);
+	ft_printf("ants = %d\n", store->ants);
 	return (error);
 }
 
-static int	handle_room(t_store **store, char **line, t_lem **lem, t_lem **cmd)
+static int	handle_room(t_store *store, char *line, t_lem **lem, t_lem **cmd)
 {
 	int		error;
 	t_lem	*new;
 	char	**tab;
 
 	error = 0;
-	tab = ft_strsplit(*line, ' ');
-	if (ft_wordcount(*line, ' ') != 3 || ft_strchr(tab[0], '-')
+	tab = ft_strsplit(line, ' ');
+	if (ft_wordcount(line, ' ') != 3 || ft_strchr(tab[0], '-')
 			|| !(new = (t_lem*)malloc(sizeof(t_lem))))
 	{
-		free_tab(tab, ft_wordcount(*line, ' '));
+		free_tab(tab, ft_wordcount(line, ' '));
 		return (1);
 	}
 	new->room = tab[0];
@@ -53,51 +54,52 @@ static int	handle_room(t_store **store, char **line, t_lem **lem, t_lem **cmd)
 	new->crd_y = ft_atoi_checker(tab[2], &error);
 	new->busy = 0;
 	new->lst = NULL;
-	new->next = NULL; 
+	new->next = NULL;
+	free(&tab[0]);
 	ft_bzero(new->cmd, 6);
 	if (error)
 		return (1);
-	(*store)->nbr_rm++;
-	if (*((*store)->cmd) != '\0')
-		addelem(cmd, &new, store);
-	return (addelem(lem, &new, store));
+	store->nbr_rm++;
+	if (*(store->cmd) != '\0')
+		addelem(cmd, new, store);
+	return (addelem(lem, new, store));
 }
 
-static int	handle_tube(t_store **store, char **line, t_lem **lem, t_lem **cmd)
+static int	handle_tube(t_store *store, char *line, t_lem **lem, t_lem **cmd)
 {
 	int		error;
 	char	**tab;
 
 	(void)cmd;
 	error = 0;
-	tab = ft_strsplit(*line, '-');
-	if (ft_wordcount(*line, '-') != 2 || ft_wordcount(*line, ' ') != 1)
+	tab = ft_strsplit(line, '-');
+	if (ft_wordcount(line, '-') != 2 || ft_wordcount(line, ' ') != 1)
 		return (error += 1);
-	(*store)->tube++;
+	(store)->tube++;
 	error += add_connection(lem, tab);
 	return (error);
 }
 
-static int	select_parsing_f(t_store **store, char **line,
+static int	select_parsing_f(t_store *store, char *line,
 		t_lem **lem, t_lem **cmd)
 {
 	static int	(*f[3])
-		(t_store **store, char **line, t_lem **lem, t_lem **cmd) = {
+		(t_store *store, char *line, t_lem **lem, t_lem **cmd) = {
 			&handle_nbr,
 			&handle_room,
 			&handle_tube,
 		};
 
-	if ((*store)->ants > 0 && (*store)->nbr_rm == 0)
-		(*store)->step++;
-	else if ((*store)->nbr_rm > 0 && (*store)->tube == 0
-			&& ft_wordcount(*line, '-') == 2 && ft_wordcount(*line, ' ') == 1)
-		(*store)->step++;
-	ft_printf("step = %d, word(-) = %d, word( ) = %d\n", (*store)->step, ft_wordcount(*line, '-'), ft_wordcount(*line, ' '));
-	return (f[(*store)->step](store, line, lem, cmd));
+	if ((store)->ants > 0 && (store)->nbr_rm == 0)
+		(store)->step = 1;
+	else if ((store)->nbr_rm > 0 && (store)->tube == 0
+			&& ft_wordcount(line, '-') == 2 && ft_wordcount(line, ' ') == 1)
+		(store)->step = 2;
+	ft_printf("step = %d, word(-) = %d, word( ) = %d\n", (store)->step, ft_wordcount(line, '-'), ft_wordcount(line, ' '));
+	return (f[(store)->step](store, line, lem, cmd));
 }
 
-static int	store_input(t_store **store, t_lem **lem, t_lem **cmd)
+static int	store_input(t_store *store, t_lem **lem, t_lem **cmd)
 {
 	char		*line;
 	int			error;
@@ -105,16 +107,20 @@ static int	store_input(t_store **store, t_lem **lem, t_lem **cmd)
 
 	step = 0;
 	error = 0;
-	while (error == 0 && get_next_line(0, &line))
+	line = NULL;
+	while (error == 0 && get_next_line(0, &line) && store->step < 2)
 	{
 		if (line[0] == '#' || line[0] == 'L')
-			command(line, *store);
+			command(line, store);
 		else
 		{
-			error += select_parsing_f(store, &line, lem, cmd);
+			error += select_parsing_f(store, line, lem, cmd);
 			ft_printf("error = %d\n", error);
 		}
-		ft_putendl("boucle");
+		free(line);
+	ft_putendl("room-list");
+	print_room(*lem);
+	ft_printf("cmd = %s, ants = %d\n", store->cmd, store->ants);
 	}
 	print_room(*lem);
 	return (0);
@@ -122,13 +128,15 @@ static int	store_input(t_store **store, t_lem **lem, t_lem **cmd)
 
 int			main()
 {
-	t_store *store;
+	t_store store;
 	t_lem	*lem;
 	t_lem	*cmd;
 
 	lem = NULL;
 	cmd = NULL;
-	init_store(&store);
+	store = init_store();
 	store_input(&store, &lem, &cmd);
+	print_room(lem);
+	del_lst(&lem, &cmd);
 	return (0);
 }

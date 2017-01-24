@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 12:05:04 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/23 17:54:07 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/24 16:59:52 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,15 @@ int						ft_atoi_checker(char *str, int *error);
 /*
  **		utilities.c
  */
-int						addelem(t_lem **old, t_lem **neww, t_store **store);
+int						addelem(t_lem **old, t_lem *neww, t_store *store);
 void					print_room(t_lem *room);
 void					free_tab(char **tab, int word);
-void					init_store(t_store **store);
+t_store					init_store(void);
 /*
  **		utilities_tube.c
  */
 int						add_connection(t_lem **lem, char **tab);
+
+void					del_lst(t_lem **lem, t_lem **cmd);
 
 #endif

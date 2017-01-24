@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 16:58:27 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/04 15:12:13 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/24 18:59:45 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void		clean(t_gnl *gnl, int j)
 	char *tmp;
 
 	tmp = gnl->str;
-	gnl->str = ft_strsub(gnl->str, gnl->i, j - gnl->i + BUFF_SIZE);
+	gnl->str = ft_strsub(gnl->str, gnl->i, ft_strlen(gnl->str + gnl->i));
 	ft_strdel(&tmp);
 	gnl->i = j - gnl->i;
 }
