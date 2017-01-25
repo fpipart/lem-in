@@ -18,13 +18,15 @@ static void	del_tube(t_list **lst)
 	t_list *lst2;
 
 	lst1 = *lst;
-	while (lst1)
+	if (*lst)
 	{
-		ft_putendl("123");
-		lst2 = lst1->next;
-		free(lst1->content);
-		free(lst1);
-		lst1 = lst2;
+		while (lst1)
+		{
+			lst2 = lst1->next;
+			free(lst1->content);
+			free(lst1);
+			lst1 = lst2;
+		}
 	}
 	*lst = NULL;
 }
@@ -51,15 +53,17 @@ static int	del_lem(t_lem **lst)
 	t_lem *lst2;
 
 	lst1 = *lst;
-	while (lst1->next)
+	if (*lst)
 	{
-		ft_putendl("456");
-		lst2 = lst1->next;
-//		free(&lst1->crd_x);
-//		free(&lst1->crd_y);
-		free(&lst1->room);
-//		free(&lst1);
-		lst1 = lst2;
+		while (lst1->next)
+		{
+			lst2 = lst1->next;
+			//		free(&lst1->crd_x);
+			//		free(&lst1->crd_y);
+			free(&lst1->room);
+			//		free(&lst1);
+			lst1 = lst2;
+		}
 	}
 	*lst = NULL;
 	return (0);
@@ -73,5 +77,5 @@ void	del_lst(t_lem **lem, t_lem **cmd)
 	tmp = *lem;
 	del_tube_each_room(lem);
 	del_lem(lem);
-//	del_lem(cmd);
+	//	del_lem(cmd);
 }

@@ -12,33 +12,39 @@
 
 #include "../includes/lem_in.h"
 
+static int	replace_node(t_lem *tmp, t_lem *tmp2, t_lem **old, t_lem *new)
+{
+	tmp2 = *old;
+	if (*old != tmp)
+	{
+		while (tmp2->next != tmp)
+			tmp2 = tmp2->next;
+		new->next = tmp->next;
+		tmp2->next = new;
+		free(tmp);
+	}
+	else
+	{
+		new->next = (*old)->next;
+		*old = new;
+	}
+	return (0);
+}
+
 static int	addtolist(t_lem **old, t_lem *new, t_store *store)
 {
 	t_lem *tmp;
 	t_lem *tmp2;
 
 	tmp = *old;
-	while (tmp &&
-			((new->crd_x != tmp->crd_x || new->crd_y != tmp->crd_y)))
+	while (tmp && !ft_strequ(new->room, tmp->room) &&
+	((new->crd_x != tmp->crd_x || new->crd_y != tmp->crd_y)))
 		tmp = tmp->next;
-	if (tmp)
+	if (tmp && ((new->crd_x == tmp->crd_x && new->crd_y == tmp->crd_y)
+	|| ft_strequ(new->room, tmp->room)))
 	{
-		tmp2 = *old;
-		if (*old != tmp)
-		{
-			while (tmp2->next != tmp)
-				tmp2 = tmp2->next;
-			new->next = tmp->next;
-			tmp2->next = new;
-		free(tmp);
-		}
-		else
-		{
-			new->next = (*old)->next;
-			*old = new;
-		}
+		replace_node(tmp, tmp2, old, new);
 		store->nbr_rm--;
-	print_room(*old);
 	}
 	else
 	{

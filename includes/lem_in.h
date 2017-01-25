@@ -48,6 +48,7 @@ t_store					init_store(void);
  **		utilities_tube.c
  */
 int						add_connection(t_lem **lem, char **tab);
+void					print_res(t_lem *lem);
 
 void					del_lst(t_lem **lem, t_lem **cmd);
 

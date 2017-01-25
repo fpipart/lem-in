@@ -31,7 +31,6 @@ static int	handle_nbr(t_store *store, char *line, t_lem **lem, t_lem **cmd)
 	if (*(store)->cmd != '\0')
 		return (1);
 	store->ants = ft_atoi_checker(line, &error);
-	ft_printf("ants = %d\n", store->ants);
 	return (error);
 }
 
@@ -108,7 +107,7 @@ static int	store_input(t_store *store, t_lem **lem, t_lem **cmd)
 	step = 0;
 	error = 0;
 	line = NULL;
-	while (error == 0 && get_next_line(0, &line) && store->step < 2)
+	while (error == 0 && get_next_line(0, &line))
 	{
 		if (line[0] == '#' || line[0] == 'L')
 			command(line, store);
@@ -118,11 +117,9 @@ static int	store_input(t_store *store, t_lem **lem, t_lem **cmd)
 			ft_printf("error = %d\n", error);
 		}
 		free(line);
-	ft_putendl("room-list");
-	print_room(*lem);
-	ft_printf("cmd = %s, ants = %d\n", store->cmd, store->ants);
 	}
-	print_room(*lem);
+//	check_validity()
+	print_res(*lem);
 	return (0);
 }
 
@@ -136,7 +133,6 @@ int			main()
 	cmd = NULL;
 	store = init_store();
 	store_input(&store, &lem, &cmd);
-	print_room(lem);
 	del_lst(&lem, &cmd);
 	return (0);
 }
