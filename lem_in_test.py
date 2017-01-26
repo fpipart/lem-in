@@ -6,6 +6,9 @@ import sys
 import subprocess
 import re
 
+def test_0():
+	print "  "
+
 def test_1():
 	 print "3\n##start\n0 1 0\n##end\n1 5 0\n2 9 0\n3 13 0\n0-2\n2-3\n3-1"
 	 
@@ -24,10 +27,19 @@ def test_5():
 def test_6():
 	 print "3\n##start\n0 1 0\n1 5 0\n2 9 0\n3 13 0\n0-2\n2-3\n3-1"
 
+def test_7():
+	 print "3\n##start\n0 1 0\n##end\n1 5 0\n2 9 0\n3 13 0\n0-2\n2-3\n0-pasbon\n3-1"
+	 
+def test_8():
+	 print "3\n##start\n0 1 0\n##end\n1 5 0\n2 9 0\n3 13 0\n0-2\n2-3\npasbon-0\n3-1"
+
 if (len(sys.argv) == 1):
-	test_1()
-	test_2()
+	test_0()
+	#test_1()
+	#test_2()
 	#test_3()
 	#test_4()
-        #test_5()
-        #test_6()
+    #test_5()
+    #test_6()
+    #test_7()
+    #test_8()

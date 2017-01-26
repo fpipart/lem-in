@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 12:05:04 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/24 16:59:52 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/26 18:22:16 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct			s_lem
 		int				crd_x;
 		int				crd_y;
 		int				busy;
+		int				len;
 		struct s_list	*lst;
 		struct s_lem	*next;
 }						t_lem;
@@ -51,5 +52,13 @@ int						add_connection(t_lem **lem, char **tab);
 void					print_res(t_lem *lem);
 
 void					del_lst(t_lem **lem, t_lem **cmd);
+/*
+ **		algo.c
+ */
+int						resolve(t_lem *lem, t_lem *cmd, t_store *store);
+/*
+ **		algo.c
+ */
+int						continue_extrem_node(t_lem **lem, char *end, int step);
 
 #endif

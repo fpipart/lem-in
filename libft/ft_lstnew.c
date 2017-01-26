@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 12:09:05 by fpipart           #+#    #+#             */
-/*   Updated: 2016/11/10 17:22:44 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/26 11:14:26 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_list	*ft_lstnew(void const *content, size_t content_size)
 			list->content = (void*)malloc(sizeof(content) * content_size);
 			if (!list->content)
 				return (NULL);
-			ft_memcpy(list->content, content, content_size);
+			ft_memcpy(list->content, content, sizeof(content) * content_size);
 			list->content_size = content_size;
 		}
 		else

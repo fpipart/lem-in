@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 14:28:17 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/24 19:26:10 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/26 16:05:20 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static int	handle_room(t_store *store, char *line, t_lem **lem, t_lem **cmd)
 	new->crd_x = ft_atoi_checker(tab[1], &error);
 	new->crd_y = ft_atoi_checker(tab[2], &error);
 	new->busy = 0;
+	new->len = 0;
 	new->lst = NULL;
 	new->next = NULL;
 	free(&tab[0]);
