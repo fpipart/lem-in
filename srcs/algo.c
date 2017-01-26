@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 12:05:24 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/26 18:22:04 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/26 19:16:46 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static int	find_shortest_paths(t_lem **lem, t_lem *st_nd)
 	set_start(lem, st_nd);
 	while (end == 0)
 	{
-		end = continue_extrem_node(lem, st_nd->next->room, step);
+		end = select_room(lem, st_nd->next->room, step);
 		step++;
 	}
 	return (0);

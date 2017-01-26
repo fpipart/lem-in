@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 12:05:04 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/26 18:22:16 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/26 19:16:20 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,6 @@ int						resolve(t_lem *lem, t_lem *cmd, t_store *store);
 /*
  **		algo.c
  */
-int						continue_extrem_node(t_lem **lem, char *end, int step);
+int						select_room(t_lem **lem, char *end, int step);
 
 #endif
