@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 14:28:17 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/26 16:05:20 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/27 15:16:05 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	handle_room(t_store *store, char *line, t_lem **lem, t_lem **cmd)
 	new->crd_x = ft_atoi_checker(tab[1], &error);
 	new->crd_y = ft_atoi_checker(tab[2], &error);
 	new->busy = 0;
-	new->len = 0;
+	new->len = -1;
 	new->lst = NULL;
 	new->next = NULL;
 	free(&tab[0]);
@@ -120,7 +120,6 @@ static int	store_input(t_store *store, t_lem **lem, t_lem **cmd)
 		free(line);
 	}
 //	check_validity()
-	print_res(*lem);
 	return (0);
 }
 
@@ -134,6 +133,10 @@ int			main()
 	cmd = NULL;
 	store = init_store();
 	store_input(&store, &lem, &cmd);
+	print_res(lem);
+	ft_putendl("Resolution");
+	if (lem && cmd)
+		resolve(lem, cmd, &store);
 	del_lst(&lem, &cmd);
 	return (0);
 }

@@ -6,14 +6,16 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 11:42:59 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/24 15:18:04 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/27 16:33:42 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-static int	replace_node(t_lem *tmp, t_lem *tmp2, t_lem **old, t_lem *new)
+static int	replace_node(t_lem *tmp, t_lem **old, t_lem *new)
 {
+	t_lem *tmp2;
+
 	tmp2 = *old;
 	if (*old != tmp)
 	{
@@ -34,7 +36,6 @@ static int	replace_node(t_lem *tmp, t_lem *tmp2, t_lem **old, t_lem *new)
 static int	addtolist(t_lem **old, t_lem *new, t_store *store)
 {
 	t_lem *tmp;
-	t_lem *tmp2;
 
 	tmp = *old;
 	while (tmp && !ft_strequ(new->room, tmp->room) &&
@@ -43,7 +44,7 @@ static int	addtolist(t_lem **old, t_lem *new, t_store *store)
 	if (tmp && ((new->crd_x == tmp->crd_x && new->crd_y == tmp->crd_y)
 	|| ft_strequ(new->room, tmp->room)))
 	{
-		replace_node(tmp, tmp2, old, new);
+		replace_node(tmp, old, new);
 		store->nbr_rm--;
 	}
 	else
@@ -77,7 +78,7 @@ void		print_room(t_lem *room)
 		tmp = room;
 		while (tmp)
 		{
-			ft_printf("%s\n", tmp->room);
+			ft_printf("ROOM = $%s$ len = %d\n", tmp->room, tmp->len);
 			tmp = tmp->next;
 		}
 	}
@@ -92,6 +93,8 @@ t_store	init_store(void)
 	store.nbr_rm = 0;
 	store.step = 0;
 	ft_bzero(store.cmd, sizeof(char) * 6);
+	store.start = NULL;
+	store.end = NULL;
 	return (store);
 }
 

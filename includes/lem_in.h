@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 12:05:04 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/26 19:16:20 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/27 16:09:04 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct			s_store
 		int				tube;
 		int				step;
 		char			cmd[6];
+		char			*start;
+		char			*end;
 }						t_store;
 
 int						ft_atoi_checker(char *str, int *error);
@@ -60,5 +62,6 @@ int						resolve(t_lem *lem, t_lem *cmd, t_store *store);
  **		algo.c
  */
 int						select_room(t_lem **lem, char *end, int step);
+int						one_step(t_lem **lem, char *room, char *end, int step);
 
 #endif
