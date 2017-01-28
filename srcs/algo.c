@@ -6,37 +6,11 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 12:05:24 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/27 19:44:44 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/28 15:46:55 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-
-static int	select_cmd(t_lem *cmd, t_store *store)
-{
-	t_lem *tmp;
-	t_lem *tmp2;
-
-	tmp = cmd;
-	while (tmp)
-	{
-		if (ft_strequ(tmp->cmd, "start"))
-			break ;
-		tmp = tmp->next;
-	}
-	tmp2 = cmd;
-	while (tmp2)
-	{
-		if (ft_strequ(tmp2->cmd, "end"))
-			break ;
-		tmp2 = tmp2->next;
-	}
-	if (!tmp || !tmp2)
-		return (1);
-	store->start = tmp->room;
-	store->end = tmp2->room;
-	return (0);
-}
 
 int			one_step(t_lem **lem, char *room, char *end, int step)
 {
@@ -77,28 +51,35 @@ static int	find_shortest_paths(t_lem **lem, t_store *store)
 
 	select_path = store->ants;
 	step = 1;
+	end_index = 0;
 	if (set_start(lem, store))
 		return (1);
 	while (select_path > 0 && step < 10)
 	{
-		end_index = select_room(lem, store->end, step);
-		if (path_len == 1)
+		if (select_room(lem, store->end, step))
 		{
-		}
-		if (select_path == store->ants)
-			select_path = select_path + path_len - 1;
-		else
-			select_path = select_path - step;
+		print_room(*lem);
+			end_index += 1;
+			if (set_busy(lem, store->end, end_index, step))
+				return (1);
+			step = 0;
+			restart_len(lem);
+		print_room(*lem);
+	/*		if (select_path == store->ants)
+				select_path = select_path + step - 1;
+			else
+				select_path = select_path - step;
+	*/	}
 		step++;
 	}
 	return (0);
 }
 
-int			resolve(t_lem *lem, t_lem *cmd, t_store *store)
+int			resolve(t_lem *lem, t_store *store)
 {
 	ft_putendl("Path finding");
-	if (select_cmd(cmd, store))
-		return (1);
+	ft_putendl(store->start);
+	ft_putendl(store->end);
 	if (find_shortest_paths(&lem, store))
 		return (1);
 	print_room(lem);

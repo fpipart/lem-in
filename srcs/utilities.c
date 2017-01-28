@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 11:42:59 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/27 16:33:42 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/28 15:00:28 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void		print_room(t_lem *room)
 		tmp = room;
 		while (tmp)
 		{
-			ft_printf("ROOM = $%s$ len = %d\n", tmp->room, tmp->len);
+			ft_printf("ROOM = $%s$ len = %d, busy = %d\n", tmp->room, tmp->len, tmp->busy);
 			tmp = tmp->next;
 		}
 	}

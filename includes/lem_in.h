@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 12:05:04 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/27 16:09:04 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/28 14:51:44 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,17 @@ t_store					init_store(void);
 int						add_connection(t_lem **lem, char **tab);
 void					print_res(t_lem *lem);
 
-void					del_lst(t_lem **lem, t_lem **cmd);
+void					del_lst(t_lem **lem);
 /*
  **		algo.c
  */
-int						resolve(t_lem *lem, t_lem *cmd, t_store *store);
+int						resolve(t_lem *lem, t_store *store);
+int						one_step(t_lem **lem, char *room, char *end, int step);
 /*
- **		algo.c
+ **		algo_shortest_paths.c
  */
 int						select_room(t_lem **lem, char *end, int step);
-int						one_step(t_lem **lem, char *room, char *end, int step);
+int						set_busy(t_lem **lem, char *room, int end_index, int step);
+void					restart_len(t_lem **lem);
 
 #endif

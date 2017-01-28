@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 14:28:17 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/27 15:16:05 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/28 14:01:46 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,19 @@ static int	command(char *line, t_store *store)
 	return (0);
 }
 
-static int	handle_nbr(t_store *store, char *line, t_lem **lem, t_lem **cmd)
+void	store_cmd(t_store *store, char *cmd, char *room)
+{
+	if (ft_strequ(cmd, "start"))
+		store->start = room;
+	if (ft_strequ(cmd, "end"))
+		store->end = room;
+}
+
+static int	handle_nbr(t_store *store, char *line, t_lem **lem)
 {
 	int error;
 
 	error = 0;
-	(void)cmd;
 	(void)lem;
 	if (*(store)->cmd != '\0')
 		return (1);
@@ -34,7 +41,7 @@ static int	handle_nbr(t_store *store, char *line, t_lem **lem, t_lem **cmd)
 	return (error);
 }
 
-static int	handle_room(t_store *store, char *line, t_lem **lem, t_lem **cmd)
+static int	handle_room(t_store *store, char *line, t_lem **lem)
 {
 	int		error;
 	t_lem	*new;
@@ -61,16 +68,16 @@ static int	handle_room(t_store *store, char *line, t_lem **lem, t_lem **cmd)
 		return (1);
 	store->nbr_rm++;
 	if (*(store->cmd) != '\0')
-		addelem(cmd, new, store);
+		store_cmd(store, store->cmd, new->room);
+//		addelem(cmd, new, store);
 	return (addelem(lem, new, store));
 }
 
-static int	handle_tube(t_store *store, char *line, t_lem **lem, t_lem **cmd)
+static int	handle_tube(t_store *store, char *line, t_lem **lem)
 {
 	int		error;
 	char	**tab;
 
-	(void)cmd;
 	error = 0;
 	tab = ft_strsplit(line, '-');
 	if (ft_wordcount(line, '-') != 2 || ft_wordcount(line, ' ') != 1)
@@ -81,10 +88,10 @@ static int	handle_tube(t_store *store, char *line, t_lem **lem, t_lem **cmd)
 }
 
 static int	select_parsing_f(t_store *store, char *line,
-		t_lem **lem, t_lem **cmd)
+		t_lem **lem)
 {
 	static int	(*f[3])
-		(t_store *store, char *line, t_lem **lem, t_lem **cmd) = {
+		(t_store *store, char *line, t_lem **lem) = {
 			&handle_nbr,
 			&handle_room,
 			&handle_tube,
@@ -96,10 +103,10 @@ static int	select_parsing_f(t_store *store, char *line,
 			&& ft_wordcount(line, '-') == 2 && ft_wordcount(line, ' ') == 1)
 		(store)->step = 2;
 	ft_printf("step = %d, word(-) = %d, word( ) = %d\n", (store)->step, ft_wordcount(line, '-'), ft_wordcount(line, ' '));
-	return (f[(store)->step](store, line, lem, cmd));
+	return (f[(store)->step](store, line, lem));
 }
 
-static int	store_input(t_store *store, t_lem **lem, t_lem **cmd)
+static int	store_input(t_store *store, t_lem **lem)
 {
 	char		*line;
 	int			error;
@@ -114,7 +121,7 @@ static int	store_input(t_store *store, t_lem **lem, t_lem **cmd)
 			command(line, store);
 		else
 		{
-			error += select_parsing_f(store, line, lem, cmd);
+			error += select_parsing_f(store, line, lem);
 			ft_printf("error = %d\n", error);
 		}
 		free(line);
@@ -127,16 +134,14 @@ int			main()
 {
 	t_store store;
 	t_lem	*lem;
-	t_lem	*cmd;
 
 	lem = NULL;
-	cmd = NULL;
 	store = init_store();
-	store_input(&store, &lem, &cmd);
+	store_input(&store, &lem);
 	print_res(lem);
 	ft_putendl("Resolution");
-	if (lem && cmd)
-		resolve(lem, cmd, &store);
-	del_lst(&lem, &cmd);
+	if (lem)
+		resolve(lem, &store);
+	del_lst(&lem);
 	return (0);
 }

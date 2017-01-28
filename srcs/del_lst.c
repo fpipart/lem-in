@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 16:09:05 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/24 17:09:00 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/28 13:50:42 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,10 @@ static int	del_lem(t_lem **lst)
 	return (0);
 }
 
-void	del_lst(t_lem **lem, t_lem **cmd)
+void	del_lst(t_lem **lem)
 {
 	t_lem *tmp;
 
-	(void)cmd;
 	tmp = *lem;
 	del_tube_each_room(lem);
 	del_lem(lem);
