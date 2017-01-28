@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 15:00:22 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/28 15:46:51 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/28 17:12:26 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ static int	continue_extrem_node(t_lem **lem, t_lem *tmp, char *end, int step)
 	while (lst)
 	{
 		if (one_step(lem, lst->content, end, step))
-		{
-			ft_printf("find end : len = %d, Room = %s\n", tmp->len, tmp->room);
 			return (1);
-		}
 		lst = lst->next;
 	}
 	return (0);
@@ -96,7 +93,7 @@ void	restart_len(t_lem **lem)
 	tmp = *lem;
 	while (tmp)
 	{
-		if (tmp->len)
+		if (tmp->len && tmp->busy == 0)
 			tmp->len = -1;
 		tmp = tmp->next;
 	}

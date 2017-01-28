@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 12:05:24 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/28 15:46:55 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/28 17:16:11 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			one_step(t_lem **lem, char *room, char *end, int step)
 	tmp = *lem;
 	while (!ft_strequ(tmp->room, room))
 		tmp = tmp->next;
-	if ((tmp->len > step || tmp->len == -1) && tmp->busy == 0)
+	if (tmp->busy == 0 && (tmp->len > step || tmp->len == -1))
 		tmp->len = step;
 	if (ft_strequ(end, room))
 		return (1);
@@ -54,22 +54,22 @@ static int	find_shortest_paths(t_lem **lem, t_store *store)
 	end_index = 0;
 	if (set_start(lem, store))
 		return (1);
-	while (select_path > 0 && step < 10)
+	while (select_path > 0)
 	{
 		if (select_room(lem, store->end, step))
 		{
-		print_room(*lem);
 			end_index += 1;
-			if (set_busy(lem, store->end, end_index, step))
-				return (1);
-			step = 0;
-			restart_len(lem);
-		print_room(*lem);
-	/*		if (select_path == store->ants)
+			if (select_path == store->ants)
 				select_path = select_path + step - 1;
 			else
 				select_path = select_path - step;
-	*/	}
+			if (set_busy(lem, store->end, end_index, step) && select_path > 0)
+				return (1);
+			step = 1;
+			ft_putendl("coucouocuuoc");
+			restart_len(lem);
+		print_room(*lem);
+		}
 		step++;
 	}
 	return (0);
@@ -82,6 +82,7 @@ int			resolve(t_lem *lem, t_store *store)
 	ft_putendl(store->end);
 	if (find_shortest_paths(&lem, store))
 		return (1);
+	ft_putendl("Fin");
 	print_room(lem);
 	return (0);
 }
