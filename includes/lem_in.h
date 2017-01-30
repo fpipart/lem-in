@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 12:05:04 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/30 11:15:38 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/30 14:35:53 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,10 @@ int						one_step(t_lem **lem, char *room, char *end, int step);
 int						select_room(t_lem **lem, char *end, int step);
 int						set_busy(t_lem **lem, char *room, int end_index, int step);
 void					restart_len(t_lem **lem);
+t_lem					*find_linked_rm(char *room, t_lem **lem);
+/*
+ **		manage_path.c
+ */
+int						manage_path(t_lem *lem, t_store *store);
 
 #endif

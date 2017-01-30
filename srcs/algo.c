@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 12:05:24 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/30 11:41:53 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/30 14:56:52 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,10 @@ int			one_step(t_lem **lem, char *room, char *end, int step)
 	tmp = *lem;
 	while (!ft_strequ(tmp->room, room))
 		tmp = tmp->next;
-	if (tmp->busy == 0 && (tmp->len > step || tmp->len == -1))
+	if ((tmp->len > step || tmp->len == -1) && tmp->busy == 0)
 		tmp->len = step;
 	if (ft_strequ(end, room))
 		return (1);
-	ft_printf("room = %s, len = %d\n", tmp->room, tmp->len);
 	return (0);
 }
 
@@ -46,32 +45,24 @@ static int	set_start(t_lem **lem, t_store *store)
 
 static int	find_shortest_paths(t_lem **lem, t_store *store)
 {
-	int	end_index;
-	int	select_path;
 	int	step;
-	int new_path;
+	int nbr_max;
+	int nbr_path;
 
-	select_path = store->ants;
 	step = 1;
-	end_index = 0;
-	new_path = 0;
+	nbr_path = 0;
+	nbr_max = manage_path(*lem, store);
 	if (set_start(lem, store))
-		return (1);
-	while (select_path > 0 || step < 10)
+		return (-1);
+	while (nbr_path < nbr_max)
 	{
 		if (select_room(lem, store->end, step))
 		{
-			end_index += 1;
-			if (select_path == store->ants)
-				select_path = select_path + step - 1;
-			else
-				select_path = select_path - step;
-			if (set_busy(lem, store->end, end_index, step) && select_path > 0)
+			nbr_path++;
+			if (set_busy(lem, store->end, nbr_path, step))
 				return (1);
-			ft_printf("select_path = %d\n", select_path);
-			ft_putendl("coucouocuuoc");
+			step = 0;
 			restart_len(lem);
-		print_room(*lem);
 		}
 		step++;
 	}
@@ -83,9 +74,8 @@ int			resolve(t_lem *lem, t_store *store)
 	ft_putendl("Path finding");
 	ft_putendl(store->start);
 	ft_putendl(store->end);
-	if (find_shortest_paths(&lem, store))
+	if (find_shortest_paths(&lem, store) == -1)
 		return (1);
-	ft_putendl("Fin");
 	print_room(lem);
 	return (0);
 }
