@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 12:05:24 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/28 17:16:11 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/30 11:41:53 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int			one_step(t_lem **lem, char *room, char *end, int step)
 		tmp->len = step;
 	if (ft_strequ(end, room))
 		return (1);
+	ft_printf("room = %s, len = %d\n", tmp->room, tmp->len);
 	return (0);
 }
 
@@ -48,13 +49,15 @@ static int	find_shortest_paths(t_lem **lem, t_store *store)
 	int	end_index;
 	int	select_path;
 	int	step;
+	int new_path;
 
 	select_path = store->ants;
 	step = 1;
 	end_index = 0;
+	new_path = 0;
 	if (set_start(lem, store))
 		return (1);
-	while (select_path > 0)
+	while (select_path > 0 || step < 10)
 	{
 		if (select_room(lem, store->end, step))
 		{
@@ -65,7 +68,7 @@ static int	find_shortest_paths(t_lem **lem, t_store *store)
 				select_path = select_path - step;
 			if (set_busy(lem, store->end, end_index, step) && select_path > 0)
 				return (1);
-			step = 1;
+			ft_printf("select_path = %d\n", select_path);
 			ft_putendl("coucouocuuoc");
 			restart_len(lem);
 		print_room(*lem);

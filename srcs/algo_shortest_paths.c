@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 15:00:22 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/28 17:12:26 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/30 11:54:35 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int			select_room(t_lem **lem, char *end, int step)
 	tmp = *lem;
 	while (tmp)
 	{
-		if (tmp->len == step - 1)
+		if (tmp->len == step - 1 && tmp->busy == 0)
 		{
 			ft_printf("select_room : len = %d, Room - 1 = %s\n", tmp->len, tmp->room);
 			if (continue_extrem_node(lem, tmp, end, step))

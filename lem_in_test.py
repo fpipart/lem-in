@@ -53,5 +53,5 @@ if (len(sys.argv) == 1):
     #test_7()
     #test_8()
     #test_10()
-    #test_11()
-    test_12()
+    test_11()
+    #test_12()
