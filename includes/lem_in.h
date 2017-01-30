@@ -70,5 +70,9 @@ t_lem					*find_linked_rm(char *room, t_lem **lem);
  **		manage_path.c
  */
 int						manage_path(t_lem *lem, t_store *store);
+/*
+ **		nbr_path.c
+ */
+int						choose_paths(t_lem *lem, t_store *store, int path_nbr);
 
 #endif

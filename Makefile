@@ -11,7 +11,8 @@
 # **************************************************************************** #
 
 FILES = lemin.c utilities.c utilities_tube.c ft_atoi_checker.c	\
-		del_lst.c algo.c algo_shortest_paths.c manage_path.c
+		del_lst.c algo.c algo_shortest_paths.c manage_path.c	\
+		nbr_path.c
 
 SRC_PATH = ./srcs/
 CFILES = $(FILES:%=./srcs/%)

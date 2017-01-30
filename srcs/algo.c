@@ -54,7 +54,7 @@ static int	find_shortest_paths(t_lem **lem, t_store *store)
 	nbr_max = manage_path(*lem, store);
 	if (set_start(lem, store))
 		return (-1);
-	while (nbr_path < nbr_max)
+	while (nbr_path < nbr_max && step < store->ants)
 	{
 		if (select_room(lem, store->end, step))
 		{
@@ -66,16 +66,22 @@ static int	find_shortest_paths(t_lem **lem, t_store *store)
 		}
 		step++;
 	}
-	return (0);
+	return (nbr_path);
 }
 
 int			resolve(t_lem *lem, t_store *store)
 {
+	int path_nbr;
+
+	path_nbr = 0;
 	ft_putendl("Path finding");
 	ft_putendl(store->start);
 	ft_putendl(store->end);
-	if (find_shortest_paths(&lem, store) == -1)
+	path_nbr = find_shortest_paths(&lem, store);
+	if (path_nbr == -1)
 		return (1);
+	choose_paths(lem, store, path_nbr);
+//	print_result
 	print_room(lem);
 	return (0);
 }
