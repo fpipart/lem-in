@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 12:05:04 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/30 14:35:53 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/31 14:27:54 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 typedef struct			s_lem
 {
 		char			*room;
-		char			cmd[6];
+		char			ant[10];
 		int				crd_x;
 		int				crd_y;
 		int				busy;
@@ -67,12 +67,20 @@ int						set_busy(t_lem **lem, char *room, int end_index, int step);
 void					restart_len(t_lem **lem);
 t_lem					*find_linked_rm(char *room, t_lem **lem);
 /*
+ **		reshape_map.c
+ */
+int						reshape_map(t_lem *lem, t_lem *new_map, t_store *store, int path_nbr);
+/*
  **		manage_path.c
  */
 int						manage_path(t_lem *lem, t_store *store);
 /*
  **		nbr_path.c
  */
-int						choose_paths(t_lem *lem, t_store *store, int path_nbr);
+int						choose_paths(t_lem *lem, t_store *store, int path_nbr, int *tab);
+/*
+ **		display.c
+ */
+int						display_result(t_lem *lem, t_store *store, int *tab);
 
 #endif

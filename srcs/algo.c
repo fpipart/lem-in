@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 12:05:24 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/30 14:56:52 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/31 14:28:25 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,9 @@ static int	find_shortest_paths(t_lem **lem, t_store *store)
 
 int			resolve(t_lem *lem, t_store *store)
 {
-	int path_nbr;
+	int		path_nbr;
+	int		*tab;
+	t_lem	*new_map;
 
 	path_nbr = 0;
 	ft_putendl("Path finding");
@@ -80,7 +82,12 @@ int			resolve(t_lem *lem, t_store *store)
 	path_nbr = find_shortest_paths(&lem, store);
 	if (path_nbr == -1)
 		return (1);
-	choose_paths(lem, store, path_nbr);
+	if (!(tab = (int*)malloc(sizeof(int) * (path_nbr + 1))))
+		return (1);
+	reshape_map(lem, new_map, store, path_nbr);
+//	choose_paths(lem, store, path_nbr, tab);
+//	display_result(lem, store, tab);
+	free(tab);
 //	print_result
 	print_room(lem);
 	return (0);

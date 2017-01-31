@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 14:28:17 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/28 14:01:46 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/31 11:29:28 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	handle_room(t_store *store, char *line, t_lem **lem)
 	new->lst = NULL;
 	new->next = NULL;
 	free(&tab[0]);
-	ft_bzero(new->cmd, 6);
+	ft_bzero(new->ant, 10);
 	if (error)
 		return (1);
 	store->nbr_rm++;

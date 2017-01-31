@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 11:42:59 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/28 15:00:28 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/31 11:31:10 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ int			addelem(t_lem **old, t_lem *new, t_store *store)
 		addtolist(old, new, store);
 	else
 		*old = new;
-	if (ft_strequ(store->cmd, "start") || ft_strequ(store->cmd, "end"))
-		ft_strcpy((*old)->cmd, store->cmd);
+//	if (ft_strequ(store->cmd, "start") || ft_strequ(store->cmd, "end"))
+//		ft_strcpy((*old)->cmd, store->cmd);
 	if (*store->cmd != '\0')
 		ft_bzero(store->cmd, 6);
 	return (0);
