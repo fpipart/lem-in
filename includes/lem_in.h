@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 12:05:04 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/31 14:27:54 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/31 18:20:37 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_lem					*find_linked_rm(char *room, t_lem **lem);
 /*
  **		reshape_map.c
  */
-int						reshape_map(t_lem *lem, t_lem *new_map, t_store *store, int path_nbr);
+int						reshape_map(t_lem *lem, t_lem **new_map, t_store *store, int path_nbr);
 /*
  **		manage_path.c
  */

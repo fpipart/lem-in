@@ -6,12 +6,12 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 10:44:07 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/31 14:11:24 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/31 17:40:45 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-
+/*
 int		move_ant_inside(t_lem *src, t_lem *dest)
 {
 	
@@ -49,4 +49,4 @@ int			display_result(t_lem *lem, t_store *store, int *tab)
 		ft_putchar('\n');
 	}
 	return (0);
-}
+}*/

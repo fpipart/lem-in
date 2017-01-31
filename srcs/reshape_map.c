@@ -6,11 +6,26 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 14:18:48 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/31 14:28:08 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/01/31 18:45:14 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
+
+static void	push_back(t_lem **path, t_lem *new_node)
+{
+	t_lem *tmp;
+
+	tmp = *path;
+	if (path && *path)
+	{
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new_node;
+	}
+	else
+		*path = new_node;
+}
 
 static t_lem	*new_node(t_lem *lem)
 {
@@ -28,8 +43,27 @@ static t_lem	*new_node(t_lem *lem)
 	return (node);
 }
 
-int		reshap_map(t_lem *lem, t_lem *new_map, t_store *store, int path_nbr)
+int		reshape_map(t_lem *lem, t_lem **new_map, t_store *store, int path_nbr)
 {
-	
+	int		i;
+	int		j;
+	t_lem	*tmp;
+
+	i = 1;
+	(void)store;
+	while (i <= path_nbr)
+	{
+		j = 1;
+		while (tmp)
+		{
+			tmp = lem;
+			while (tmp && (i != tmp->busy || j != tmp->len))
+				tmp = tmp->next;
+			if (tmp && tmp->busy == i)
+				push_back(new_map, new_node(tmp));
+			j++;
+		}
+		i++;
+	}
 	return (0);
 }
