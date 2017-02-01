@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 14:18:48 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/31 18:45:14 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/01 11:00:07 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ static t_lem	*new_node(t_lem *lem)
 {
 	t_lem *node;
 
-	node = (t_lem*)malloc(sizeof(t_lem));
+	if (!(node = (t_lem*)malloc(sizeof(t_lem))))
+		return (NULL);
 	node->room = ft_strdup(lem->room);
 	ft_bzero(node->ant, 10);
 	node->crd_x = lem->crd_x;
@@ -51,9 +52,11 @@ int		reshape_map(t_lem *lem, t_lem **new_map, t_store *store, int path_nbr)
 
 	i = 1;
 	(void)store;
+	ft_putnbr(path_nbr);
 	while (i <= path_nbr)
 	{
 		j = 1;
+		tmp = lem;
 		while (tmp)
 		{
 			tmp = lem;

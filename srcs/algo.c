@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 12:05:24 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/31 18:45:02 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/01 18:32:54 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int	find_shortest_paths(t_lem **lem, t_store *store)
 
 	step = 1;
 	nbr_path = 0;
-	nbr_max = manage_path(*lem, store);
+	nbr_max = nbr_path_max(*lem, store);
 	if (set_start(lem, store))
 		return (-1);
 	while (nbr_path < nbr_max && step < store->ants)
@@ -88,10 +88,10 @@ int			resolve(t_lem *lem, t_store *store)
 		return (1);
 	print_room(lem);
 	reshape_map(lem, &new_map, store, path_nbr);
-	ft_putendl("Trie ?");
+	ft_putendl("new_map");
 	print_room(new_map);
-//	choose_paths(lem, store, path_nbr, tab);
-//	display_result(lem, store, tab);
+	choose_paths(new_map, store, path_nbr, tab);
+	fill_result(new_map, store, tab);
 	free(tab);
 //	print_result
 	return (0);

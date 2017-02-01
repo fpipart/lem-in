@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 12:05:04 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/31 18:20:37 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/01 18:32:56 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 typedef struct			s_lem
 {
 		char			*room;
-		char			ant[10];
+		char			ant[11];
 		int				crd_x;
 		int				crd_y;
 		int				busy;
@@ -31,6 +31,9 @@ typedef struct			s_lem
 typedef struct			s_store
 {
 		int				ants;
+		int				ants_tot;
+		int				ants_strt;
+		int				ants_end;
 		int				nbr_rm;
 		int				tube;
 		int				step;
@@ -73,7 +76,7 @@ int						reshape_map(t_lem *lem, t_lem **new_map, t_store *store, int path_nbr);
 /*
  **		manage_path.c
  */
-int						manage_path(t_lem *lem, t_store *store);
+int						nbr_path_max(t_lem *lem, t_store *store);
 /*
  **		nbr_path.c
  */
@@ -81,6 +84,6 @@ int						choose_paths(t_lem *lem, t_store *store, int path_nbr, int *tab);
 /*
  **		display.c
  */
-int						display_result(t_lem *lem, t_store *store, int *tab);
+int						fill_result(t_lem *new_map, t_store *store, int *size_paths);
 
 #endif

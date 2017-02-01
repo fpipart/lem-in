@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/30 12:07:27 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/30 14:37:53 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/01 11:05:17 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int count_path(t_list *start, t_list *end)
 	return (j);
 }
 
-int		manage_path(t_lem *lem, t_store *store)
+int		nbr_path_max(t_lem *lem, t_store *store)
 {
 	t_lem	*start;
 	t_lem	*end;

@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 11:42:59 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/31 18:52:38 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/01 18:03:28 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void		print_room(t_lem *room)
 		tmp = room;
 		while (tmp)
 		{
-			ft_printf("ROOM = $%s$ len = %d, busy = %d\n", tmp->room, tmp->len, tmp->busy);
+			ft_printf("ROOM = $%s$ len = %d, busy = %d, node->ants = %s\n", tmp->room, tmp->len, tmp->busy, tmp->ant);
 			tmp = tmp->next;
 		}
 	}
@@ -92,7 +92,7 @@ t_store	init_store(void)
 	store.tube = 0;
 	store.nbr_rm = 0;
 	store.step = 0;
-	ft_bzero(store.cmd, sizeof(char) * 6);
+	ft_bzero(store.cmd, 6);
 	store.start = NULL;
 	store.end = NULL;
 	return (store);
