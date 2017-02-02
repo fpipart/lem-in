@@ -27,6 +27,19 @@ static int	move_one_ant(t_lem *tmp, int path, t_store *store)
 	return (0);
 }
 
+static int	move_ant_one_path_end(t_lem *new_map, int path, t_store *store)
+{
+	t_lem *tmp;
+	t_lem *tmp_path;
+
+	tmp = new_map;
+	while (tmp->busy != path)
+		tmp = tmp->next;
+	
+//	while ()
+	return (0);
+}
+
 static int	move_ant_one_path(t_lem *new_map, int path, t_store *store)
 {
 	t_lem *tmp;
@@ -39,7 +52,7 @@ static int	move_ant_one_path(t_lem *new_map, int path, t_store *store)
 	if (!ft_isdigit(*(tmp_path->ant)) || ft_isdigit(*(tmp_path->next->ant)))
 	{
 		while (tmp_path->next && (tmp_path->busy != path || !ft_isdigit(*(tmp_path->next->ant))))
-		tmp_path = tmp_path->next;
+			tmp_path = tmp_path->next;
 	}
 	tmp = tmp_path;
 	if (tmp->next)
@@ -47,11 +60,16 @@ static int	move_ant_one_path(t_lem *new_map, int path, t_store *store)
 	ft_printf("tmp->room = %s, busy = %d, ft_isdigit() = %s\n", tmp->room, tmp->busy, tmp_path->next->ant);
 	while (tmp && tmp->busy == path)
 	{
+	ft_putendl("aaaaaaaaAAAAAAAAAAAAAAaaaaaaaaaa");
 		tmp = tmp_path;
 		if (!ft_isdigit(*(tmp->ant)))
 			break ;
 		while (tmp->next && tmp->next->busy == path && ft_isdigit(*(tmp->next->ant)))
+		{
+			ft_putendl("ii");
 			tmp = tmp->next;
+			}
+	ft_putendl(tmp->ant);
 		move_one_ant(tmp, path, store);
 	}
 	}
@@ -120,8 +138,7 @@ int			fill_result(t_lem *new_map, t_store *store, int *size_paths)
 	while (*(size_paths + (path_nbr_max)) != -1)
 		path_nbr_max++;
 	ft_printf("path_nbr_max = %d", path_nbr_max);
-	while (store->ants_end != store->ants_tot)
-	//while (store->ants_strt != 0)
+	while (store->ants_strt != 0)
 	{
 		move_ant_inside(new_map, path_nbr_max, store);
 		ft_putendl("Moove inside ants");
@@ -130,6 +147,10 @@ int			fill_result(t_lem *new_map, t_store *store, int *size_paths)
 		ft_putendl("Moove new ants");
 	print_room(new_map);
 		ft_putchar('\n');
+	}
+	while (store->ants_end != store->ants_tot)
+	{
+		move_ant_inside_end(new_map, path_nbr_max, store);
 	}
 	return (0);
 }
