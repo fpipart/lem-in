@@ -34,7 +34,7 @@ static t_lem	*new_node(t_lem *lem)
 	if (!(node = (t_lem*)malloc(sizeof(t_lem))))
 		return (NULL);
 	node->room = ft_strdup(lem->room);
-	ft_bzero(node->ant, 10);
+	ft_bzero(node->ant, 11);
 	node->crd_x = lem->crd_x;
 	node->crd_y = lem->crd_y;
 	node->busy = lem->busy;

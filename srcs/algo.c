@@ -43,7 +43,7 @@ static int	set_start(t_lem **lem, t_store *store)
 	return (0);
 }
 
-static int	find_shortest_paths(t_lem **lem, t_store *store)
+static int	find_paths(t_lem **lem, t_store *store)
 {
 	int	step;
 	int nbr_max;
@@ -79,9 +79,7 @@ int			resolve(t_lem *lem, t_store *store)
 	path_nbr = 0;
 	new_map = NULL;
 	ft_putendl("Path finding");
-	ft_putendl(store->start);
-	ft_putendl(store->end);
-	path_nbr = find_shortest_paths(&lem, store);
+	path_nbr = find_paths(&lem, store);
 	if (path_nbr == -1)
 		return (1);
 	if (!(tab = (int*)malloc(sizeof(int) * (path_nbr + 1))))
@@ -90,7 +88,7 @@ int			resolve(t_lem *lem, t_store *store)
 	reshape_map(lem, &new_map, store, path_nbr);
 	ft_putendl("new_map");
 	print_room(new_map);
-	choose_paths(new_map, store, path_nbr, tab);
+	choose_paths(new_map, store, path_nbr, &tab);
 	fill_result(new_map, store, tab);
 	free(tab);
 //	print_result

@@ -80,7 +80,7 @@ int						nbr_path_max(t_lem *lem, t_store *store);
 /*
  **		nbr_path.c
  */
-int						choose_paths(t_lem *lem, t_store *store, int path_nbr, int *tab);
+int						choose_paths(t_lem *lem, t_store *store, int path_nbr, int **tab);
 /*
  **		display.c
  */

@@ -29,7 +29,7 @@ static int find_pathlength(t_lem *new_map, int path)
 	return (len);
 }
 
-int		choose_paths(t_lem *new_map, t_store *store, int path_nbr, int *size_paths)
+int		choose_paths(t_lem *new_map, t_store *store, int path_nbr, int **size_paths)
 {
 	int i;
 	int step;
@@ -38,14 +38,14 @@ int		choose_paths(t_lem *new_map, t_store *store, int path_nbr, int *size_paths)
 	i = 0;
 	while (i < path_nbr && size_paths[i] >= 0)
 	{
-		size_paths[0] = find_pathlength(new_map, 1);
+		(*size_paths)[0] = find_pathlength(new_map, 1);
 		if (step == 0)
-			step = store->ants + size_paths[0];
+			step = store->ants + (*size_paths)[0];
 		else
-			step -= size_paths[i];
+			step -= (*size_paths)[i];
 		i++;
 	}
-	size_paths[i] = -1;
+	(*size_paths)[i] = -1;
 	return (i);
 }
 /*

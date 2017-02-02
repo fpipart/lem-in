@@ -29,7 +29,7 @@ LIB = libft.a
 INC_PATH = ./includes/
 INC = lem_in.h
 
-FLAGS = -g -Wextra -Werror -Wall
+FLAGS = -Wextra -Werror -Wall
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c $(INC_PATH)$(INC)
 	@mkdir -p $(OBJ_PATH)
