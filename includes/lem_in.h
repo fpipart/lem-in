@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 12:05:04 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/03 12:09:35 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/03 15:12:42 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,11 @@ int						fill_result(t_lem *new_map, t_store *store, int *size_paths);
 /*
  **		move_ant.c
  */
+int						move_ants(t_lem *new_map, t_store *store, int *size_paths, int path_nbr_max);
 int						move_ant_inside_end(t_lem **new_map, int path_nbr_max, t_store *store);
+/*
+ **		display_resolution.c
+ */
+int						print_resolution(t_lem *map, int end_nbr);
 
 #endif

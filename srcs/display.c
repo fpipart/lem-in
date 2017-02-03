@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 10:44:07 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/03 12:48:19 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/03 15:12:45 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,22 @@ static int	move_ant_one_path(t_lem *new_map, int path, t_store *store)
 	while (tmp_path->busy != path)
 		tmp_path = tmp_path->next;
 	if (!ft_isdigit(*(tmp_path->ant)) || ft_isdigit(*(tmp_path->next->ant)))
-	{
-		while (tmp_path->next && (tmp_path->busy != path || !ft_isdigit(*(tmp_path->next->ant))))
+		while (tmp_path->next && (tmp_path->busy != path ||
+					!ft_isdigit(*(tmp_path->next->ant))))
 			tmp_path = tmp_path->next;
-	}
 	tmp = tmp_path;
-	if (tmp->next)
+	if (!tmp->next)
+		return (0);
+	while (tmp && tmp->busy == path)
 	{
-		while (tmp && tmp->busy == path)
-		{
-			tmp = tmp_path;
-			if (!ft_isdigit(*(tmp->ant)))
-				break ;
-			while (tmp->next && tmp->next->busy == path && ft_isdigit(*(tmp->next->ant)))
-				tmp = tmp->next;
-			ft_putendl(tmp->ant);
-			move_one_ant(tmp, path, store);
-		}
+		tmp = tmp_path;
+		if (!ft_isdigit(*(tmp->ant)))
+			break ;
+		while (tmp->next && tmp->next->busy == path
+				&& ft_isdigit(*(tmp->next->ant)))
+			tmp = tmp->next;
+		ft_putendl(tmp->ant);
+		move_one_ant(tmp, path, store);
 	}
 	return (0);
 }
@@ -72,40 +71,10 @@ static int	move_ant_inside(t_lem *new_map, int path_nbr_max, t_store *store)
 	return (0);
 }
 
-static int	insert_new_ant(t_lem *new_map, t_store *store, int path_nbr)
-{
-	t_lem	*tmp;
-	int		i;
-
-	i = 1;
-	tmp = new_map;
-	while (tmp && tmp->busy <= path_nbr)
-	{
-		while (tmp && tmp->busy != i)
-			tmp = tmp->next;
-		if (tmp && store->ants_strt > 0)
-		{
-			ft_strcpy(tmp->ant, ft_itoa(store->ants));
-			store->ants++;
-			store->ants_strt--;
-		}
-		i++;
-	}
-	print_room(new_map);
-	return (path_nbr);
-}
-
-static int	move_ants(t_lem *new_map, t_store *store, int *size_paths, int path_nbr_max)
-{
-	int		path_nbr;
-
-	path_nbr = choose_paths(new_map, store, path_nbr_max, &size_paths);
-	return (insert_new_ant(new_map, store, path_nbr));
-}
-
 int			fill_result(t_lem *new_map, t_store *store, int *size_paths)
 {
 	int	path_nbr_max;
+	int end_nbr;
 
 	path_nbr_max = 0;
 	store->ants_tot = store->ants;
@@ -125,6 +94,11 @@ int			fill_result(t_lem *new_map, t_store *store, int *size_paths)
 		ft_putchar('\n');
 	}
 	while (store->ants_end != store->ants_tot)
-		move_ant_inside_end(&new_map, path_nbr_max, store);
+	{
+		end_nbr = move_ant_inside_end(&new_map, path_nbr_max, store);
+		ft_putendl("NEW STEP -----------------");
+		print_room(new_map);
+		print_resolution(new_map, end_nbr);
+	}
 	return (0);
 }
