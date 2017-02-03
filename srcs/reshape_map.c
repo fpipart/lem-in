@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 14:18:48 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/01 11:00:07 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/03 12:33:42 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ int		reshape_map(t_lem *lem, t_lem **new_map, t_store *store, int path_nbr)
 		while (tmp)
 		{
 			tmp = lem;
-			while (tmp && (i != tmp->busy || j != tmp->len))
+			while (tmp && (i != tmp->busy || j != tmp->len ||
+					ft_strequ(tmp->room, store->end)))
 				tmp = tmp->next;
 			if (tmp && tmp->busy == i)
 				push_back(new_map, new_node(tmp));
