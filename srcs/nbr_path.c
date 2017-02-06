@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:28:53 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/01 16:37:43 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/06 17:31:30 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int find_pathlength(t_lem *new_map, int path)
 
 	tmp = new_map;
 	len = 0;
-	while (tmp->busy == path)
+	while (tmp && tmp->busy == path)
 	{
 		tmp = tmp->next;
 		len++;
@@ -36,7 +36,7 @@ int		choose_paths(t_lem *new_map, t_store *store, int path_nbr, int **size_paths
 
 	step = 0;
 	i = 0;
-	while (i < path_nbr && size_paths[i] >= 0)
+	while (i < path_nbr)
 	{
 		(*size_paths)[0] = find_pathlength(new_map, 1);
 		if (step == 0)

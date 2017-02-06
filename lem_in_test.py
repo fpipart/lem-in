@@ -9,6 +9,9 @@ import re
 def test_0():
 	print "  "
 
+def test_1_1():
+	 print "3\n2 5 0\n##start\n0 1 2\n##end\n1 9 2\n3 5 4\n0-2\n0-3\n2-1\n3-1\n2-3"
+
 def test_1():
 	 print "3\n##start\n0 1 0\n##end\n1 5 0\n2 9 0\n3 13 0\n0-2\n2-3\n3-1"
 	 
@@ -44,7 +47,8 @@ def test_12():
 
 if (len(sys.argv) == 1):
 	#test_0()
-	test_1()
+	#test_1_1()
+	#test_1()
 	#test_2()
 	#test_3()
 	#test_4()
@@ -53,5 +57,5 @@ if (len(sys.argv) == 1):
     #test_7()
     #test_8()
     #test_10()
-    #test_11()
+    test_11()
     #test_12()

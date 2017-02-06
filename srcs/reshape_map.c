@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 14:18:48 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/06 12:40:35 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/06 17:09:35 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,11 @@ int		reshape_map(t_lem *lem, t_lem **new_map, t_store *store, int path_nbr)
 
 	i = 1;
 	(void)store;
+		ft_printf("i = %d, path_nbr = %d\n", i, path_nbr);
 	while (i <= path_nbr)
 	{
 		j = 1;
+		ft_printf("i = %d, j = %d\n", i, j);
 		tmp = lem;
 		while (tmp)
 		{

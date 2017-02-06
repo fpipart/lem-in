@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 12:05:24 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/06 14:15:57 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/06 17:52:52 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	find_paths(t_lem **lem, t_store *store)
 	nbr_max = nbr_path_max(*lem, store);
 	if (set_start(lem, store))
 		return (-1);
-	while (nbr_path < nbr_max && step < store->ants)
+	while (nbr_path <= nbr_max && step <= store->ants)
 	{
 		if (select_room(lem, store->end, step))
 		{
@@ -81,6 +81,7 @@ int			resolve(t_lem *lem, t_store *store)
 		return (1);
 	if (!(tab = (int*)malloc(sizeof(int) * (path_nbr + 1))))
 		return (1);
+	ft_bzero(tab, sizeof(int) * (path_nbr + 1));
 	reshape_map(lem, &new_map, store, path_nbr);
 	choose_paths(new_map, store, path_nbr, &tab);
 	fill_result(new_map, store, tab);

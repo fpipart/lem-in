@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/30 12:07:27 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/01 11:05:17 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/06 17:19:35 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int		nbr_path_max(t_lem *lem, t_store *store)
 	t_lem	*end;
 	int		nbr_path_max;
 
+	nbr_path_max = 0;
 	start = find_linked_rm(store->start, &lem);
 	end = find_linked_rm(store->end, &lem);
 	nbr_path_max = count_path(start->lst, end->lst);
