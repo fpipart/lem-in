@@ -47,7 +47,7 @@ def test_12():
 
 if (len(sys.argv) == 1):
 	#test_0()
-	#test_1_1()
+	test_1_1()
 	#test_1()
 	#test_2()
 	#test_3()
@@ -57,5 +57,5 @@ if (len(sys.argv) == 1):
     #test_7()
     #test_8()
     #test_10()
-    test_11()
+    #test_11()
     #test_12()
