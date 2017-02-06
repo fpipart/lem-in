@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 10:11:50 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/03 15:11:15 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/06 12:29:41 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ static int	insert_new_ant(t_lem *new_map, t_store *store, int path_nbr)
 		if (tmp && store->ants_strt > 0)
 		{
 			ft_strcpy(tmp->ant, ft_itoa(store->ants));
+			print_ant_position(tmp->ant, tmp->room);
 			store->ants++;
 			store->ants_strt--;
 		}
 		i++;
 	}
-	print_room(new_map);
 	return (path_nbr);
 }
 
@@ -60,9 +60,15 @@ static int	move_one_tube(t_lem **tmp_path, t_store *store)
 					tmp->next->busy == tmp->busy)
 				tmp = tmp->next;
 			if (tmp->next && tmp->busy == tmp->next->busy)
+			{
 				ft_strcpy(tmp->next->ant, tmp->ant);
-			if (!tmp->next || tmp->next->busy != tmp->busy)
+				print_ant_position(tmp->next->ant, tmp->next->room);
+			}
+			else if (!tmp->next || tmp->next->busy != tmp->busy)
+			{
 				store->ants_end++;
+				print_ant_position(tmp->ant, store->end);
+			}
 			ft_bzero(tmp->ant, 11);
 			step = 1;
 		}
@@ -71,6 +77,7 @@ static int	move_one_tube(t_lem **tmp_path, t_store *store)
 			while (tmp->next && *(tmp->next->ant) != '\0')
 				tmp = tmp->next;
 			ft_strcpy(tmp->next->ant, tmp->ant);
+			print_ant_position(tmp->next->ant, tmp->next->room);
 			ft_bzero(tmp->ant, 11);
 		}
 	}

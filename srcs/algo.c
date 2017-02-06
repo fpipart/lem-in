@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 12:05:24 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/01 18:32:54 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/06 12:39:41 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,8 @@ static int	set_start(t_lem **lem, t_store *store)
 	t_list	*lst;
 
 	tmp = *lem;
-	ft_putendl("Find start tube");
 	while (tmp && !ft_strequ(store->start, tmp->room))
 		tmp = tmp->next;
-	ft_putendl(tmp->room);
 	if (!tmp)
 		return (1);
 	tmp->len = 0;
@@ -78,19 +76,14 @@ int			resolve(t_lem *lem, t_store *store)
 
 	path_nbr = 0;
 	new_map = NULL;
-	ft_putendl("Path finding");
 	path_nbr = find_paths(&lem, store);
 	if (path_nbr == -1)
 		return (1);
 	if (!(tab = (int*)malloc(sizeof(int) * (path_nbr + 1))))
 		return (1);
-	print_room(lem);
 	reshape_map(lem, &new_map, store, path_nbr);
-	ft_putendl("new_map");
-	print_room(new_map);
 	choose_paths(new_map, store, path_nbr, &tab);
 	fill_result(new_map, store, tab);
 	free(tab);
-//	print_result
 	return (0);
 }

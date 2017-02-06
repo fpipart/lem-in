@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 10:44:07 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/03 15:12:45 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/06 12:33:13 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@ static int	move_one_ant(t_lem *tmp, int path, t_store *store)
 {
 	if (!tmp->next || tmp->next->busy != path)
 	{
+		print_ant_position(tmp->ant, store->end);
 		ft_bzero(tmp->ant, 11);
 		store->ants_end++;
 	}
 	else if (!ft_isdigit(*(tmp->next->ant)))
 	{
+		print_ant_position(tmp->ant, tmp->next->room);
 		ft_strcpy(tmp->next->ant, tmp->ant);
 		ft_bzero(tmp->ant, 11);
 	}
@@ -50,7 +52,6 @@ static int	move_ant_one_path(t_lem *new_map, int path, t_store *store)
 		while (tmp->next && tmp->next->busy == path
 				&& ft_isdigit(*(tmp->next->ant)))
 			tmp = tmp->next;
-		ft_putendl(tmp->ant);
 		move_one_ant(tmp, path, store);
 	}
 	return (0);
@@ -86,19 +87,14 @@ int			fill_result(t_lem *new_map, t_store *store, int *size_paths)
 	while (store->ants_strt != 0)
 	{
 		move_ant_inside(new_map, path_nbr_max, store);
-		ft_putendl("Moove inside ants");
-		print_room(new_map);
 		move_ants(new_map, store, size_paths, path_nbr_max);
-		ft_putendl("Moove new ants");
-		print_room(new_map);
 		ft_putchar('\n');
 	}
 	while (store->ants_end != store->ants_tot)
 	{
 		end_nbr = move_ant_inside_end(&new_map, path_nbr_max, store);
-		ft_putendl("NEW STEP -----------------");
-		print_room(new_map);
-		print_resolution(new_map, end_nbr);
+		ft_putchar('\n');
+//		print_resolution(new_map, end_nbr);
 	}
 	return (0);
 }

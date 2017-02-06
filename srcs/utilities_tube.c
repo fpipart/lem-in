@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 12:04:12 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/26 11:49:12 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/06 12:44:22 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ int			add_connection(t_lem **lem, char **tab)
 	int error;
 
 	error = check_tub(*lem, tab);
-	ft_putnbr(error);
 	if (!ft_strequ(tab[0], tab[1]) && error == 0)
 	{
 		error += findroom_addtube(lem, tab[0], tab[1]);
@@ -73,26 +72,4 @@ int			add_connection(t_lem **lem, char **tab)
 	else
 		error += 1;
 	return (error);
-}
-
-void		print_res(t_lem *lem)
-{
-	t_lem	*tmp;
-	t_list	*lst;
-
-	tmp = lem;
-	while (tmp)
-	{
-		ft_putendl("Room");
-		ft_putendl(tmp->room);
-		lst = tmp->lst;
-		ft_putendl("List of the tube");
-		while (lst)
-		{
-			if (lst->content)
-				ft_putendl(lst->content);
-			lst = lst->next;
-		}
-		tmp = tmp->next;
-	}
 }

@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 15:00:22 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/31 17:53:26 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/06 12:42:34 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ static int	continue_extrem_node(t_lem **lem, t_lem *tmp, char *end, int step)
 	while (lst)
 	{
 		if (one_step(lem, lst->content, end, step))
-		{
-			ft_printf("find end : len = %d, Room = %s\n", tmp->len, tmp->room);
 			return (1);
-		}
 		lst = lst->next;
 	}
 	return (0);
@@ -38,7 +35,6 @@ int			select_room(t_lem **lem, char *end, int step)
 	{
 		if (tmp->len == step - 1 && tmp->busy == 0)
 		{
-			ft_printf("select_room : len = %d, Room - 1 = %s\n", tmp->len, tmp->room);
 			if (continue_extrem_node(lem, tmp, end, step))
 				return (1);
 		}
@@ -79,7 +75,6 @@ int		set_busy(t_lem **lem, char *room, int end_index, int step)
 	while (lst)
 	{
 		tmp2 = find_linked_rm(lst->content, lem);
-		ft_printf("room = %s, tmp2->len = %d, step - 1 = %d\n", tmp2->room, tmp2->len, step - 1);
 		if (tmp2->len == 0)
 			return (0);
 		else if (tmp2->len == step - 1)

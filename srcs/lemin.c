@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 14:28:17 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/01 17:39:44 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/06 12:45:06 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ static int	handle_room(t_store *store, char *line, t_lem **lem)
 	store->nbr_rm++;
 	if (*(store->cmd) != '\0')
 		store_cmd(store, store->cmd, new->room);
-//		addelem(cmd, new, store);
 	return (addelem(lem, new, store));
 }
 
@@ -102,7 +101,6 @@ static int	select_parsing_f(t_store *store, char *line,
 	else if ((store)->nbr_rm > 0 && (store)->tube == 0
 			&& ft_wordcount(line, '-') == 2 && ft_wordcount(line, ' ') == 1)
 		(store)->step = 2;
-	ft_printf("step = %d, word(-) = %d, word( ) = %d\n", (store)->step, ft_wordcount(line, '-'), ft_wordcount(line, ' '));
 	return (f[(store)->step](store, line, lem));
 }
 
@@ -120,10 +118,7 @@ static int	store_input(t_store *store, t_lem **lem)
 		if (line[0] == '#' || line[0] == 'L')
 			command(line, store);
 		else
-		{
 			error += select_parsing_f(store, line, lem);
-			ft_printf("error = %d\n", error);
-		}
 		free(line);
 	}
 //	check_validity()
@@ -138,8 +133,6 @@ int			main()
 	lem = NULL;
 	store = init_store();
 	store_input(&store, &lem);
-	print_res(lem);
-	ft_putendl("Resolution");
 	if (lem)
 		resolve(lem, &store);
 	del_lst(&lem);
