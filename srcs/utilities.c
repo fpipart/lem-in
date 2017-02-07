@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 11:42:59 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/01 18:03:28 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/07 16:33:38 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ t_store	init_store(void)
 	ft_bzero(store.cmd, 6);
 	store.start = NULL;
 	store.end = NULL;
+	store.start_end = 0;
 	return (store);
 }
 

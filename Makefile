@@ -6,13 +6,14 @@
 #    By: fpipart <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/18 10:59:14 by fpipart           #+#    #+#              #
-#    Updated: 2017/02/06 12:06:49 by fpipart          ###   ########.fr        #
+#    Updated: 2017/02/07 15:55:05 by fpipart          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FILES = lemin.c utilities.c utilities_tube.c ft_atoi_checker.c	\
 		del_lst.c algo.c algo_shortest_paths.c manage_path.c	\
-		nbr_path.c reshape_map.c display.c move_ant.c display_resolution.c
+		nbr_path.c reshape_map.c display.c move_ant.c			\
+		display_resolution.c check_validity.c handle_s_to_e.c
 
 SRC_PATH = ./srcs/
 CFILES = $(FILES:%=./srcs/%)

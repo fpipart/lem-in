@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 14:28:17 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/06 18:55:14 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/07 11:50:20 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,6 @@ static int	store_input(t_store *store, t_lem **lem)
 			error += select_parsing_f(store, line, lem);
 		free(line);
 	}
-//	check_validity()
 	return (0);
 }
 
@@ -133,6 +132,8 @@ int			main()
 	lem = NULL;
 	store = init_store();
 	store_input(&store, &lem);
+	if (check_validity(store, lem))
+		return (0);
 	if (lem)
 		resolve(lem, &store);
 	del_lst(&lem);

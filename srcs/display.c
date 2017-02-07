@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 10:44:07 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/06 18:53:10 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/07 16:06:17 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,8 @@ static int	move_ant_one_path(t_lem *new_map, int path, t_store *store)
 	t_lem *tmp_path;
 
 	tmp_path = new_map;
-	ft_printf("room = %s, %d, busy = %d\n", tmp_path->room, path, tmp_path->busy);
 	while (tmp_path && tmp_path->busy != path)
 		tmp_path = tmp_path->next;
-	ft_printf("room = %s, %d, busy = %d\n", tmp_path->room, path, tmp_path->busy);
 	if (!ft_isdigit(*(tmp_path->ant)) || ft_isdigit(*(tmp_path->next->ant)))
 		while (tmp_path->next && (tmp_path->busy != path ||
 					!ft_isdigit(*(tmp_path->next->ant))))
@@ -84,21 +82,26 @@ int			fill_result(t_lem *new_map, t_store *store, int *size_paths)
 	store->ants_strt = store->ants;
 	store->ants_end = 0;
 	store->ants = 1;
+	ft_putendl("new_map");
+	print_room(new_map);
+	ft_putendl("END");
 	while (*(size_paths + (path_nbr_max)) != -1)
 		path_nbr_max++;
 	while (store->ants_strt != 0)
 	{
-		move_ant_inside(new_map, path_nbr_max, store);
-		ft_putendl("OK ?");
-		move_ants(new_map, store, size_paths, path_nbr_max);
-		ft_putendl("HELLO");
+		if (store->start_end == 1)
+			move_ant_s_to_e(store);
+		if (new_map)
+		{
+			move_ant_inside(new_map, path_nbr_max, store);
+			move_ants(new_map, store, size_paths, path_nbr_max);
+		}
 		ft_putchar('\n');
 	}
 	while (store->ants_end != store->ants_tot)
 	{
 		end_nbr = move_ant_inside_end(&new_map, path_nbr_max, store);
 		ft_putchar('\n');
-	//	print_resolution(new_map, end_nbr);
 	}
 	return (0);
 }
