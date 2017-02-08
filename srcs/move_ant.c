@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 10:11:50 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/06 18:09:40 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/08 16:42:26 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ static int	insert_new_ant(t_lem *new_map, t_store *store, int path_nbr)
 
 	i = 1;
 	tmp = new_map;
-	while (tmp && tmp->busy <= path_nbr)
+	//while (tmp && tmp->busy <= path_nbr)
+	while (i <= path_nbr)
 	{
+		tmp = new_map;
 		while (tmp && tmp->busy != i)
 			tmp = tmp->next;
 		if (tmp && store->ants_strt > 0)
@@ -29,13 +31,14 @@ static int	insert_new_ant(t_lem *new_map, t_store *store, int path_nbr)
 			print_ant_position(tmp->ant, tmp->room);
 			store->ants++;
 			store->ants_strt--;
+	//	ft_printf("\ni = %d, path_nbr = %d\n", i, path_nbr);
 		}
 		i++;
 	}
 	return (path_nbr);
 }
 
-int	move_ants(t_lem *new_map, t_store *store, int *size_paths,
+int			move_ants(t_lem *new_map, t_store *store, int *size_paths,
 		int path_nbr_max)
 {
 	int	path_nbr;
@@ -95,14 +98,15 @@ int			move_ant_inside_end(t_lem **new_map, int path_nbr_max, t_store *store)
 	tmp = *new_map;
 	while (path <= path_nbr_max)
 	{
+		tmp = *new_map;
 		while (tmp && tmp->busy != path)
 			tmp = tmp->next;
 		while (tmp && *(tmp->ant) == '\0' && tmp->busy == path)
 			tmp = tmp->next;
 		if (tmp)
 			move_one_tube(&tmp, store);
-		else
-			return (1);
+//		else
+//			return (1);
 		path++;
 	}
 	return (store->ants_end - end_nbr);

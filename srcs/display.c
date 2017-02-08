@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 10:44:07 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/07 16:06:17 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/08 18:21:13 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 static int	move_one_ant(t_lem *tmp, int path, t_store *store)
 {
+//	ft_printf("tmp->ant = %s, tmp->room = %s\n", tmp->ant, tmp->room);
 	if (!tmp->next || tmp->next->busy != path)
 	{
 		print_ant_position(tmp->ant, store->end);
 		ft_bzero(tmp->ant, 11);
 		store->ants_end++;
 	}
-	else if (!ft_isdigit(*(tmp->next->ant)))
+	else if (tmp->next && !ft_isdigit(*(tmp->next->ant)))
 	{
 		print_ant_position(tmp->ant, tmp->next->room);
 		ft_strcpy(tmp->next->ant, tmp->ant);
@@ -37,13 +38,11 @@ static int	move_ant_one_path(t_lem *new_map, int path, t_store *store)
 	tmp_path = new_map;
 	while (tmp_path && tmp_path->busy != path)
 		tmp_path = tmp_path->next;
-	if (!ft_isdigit(*(tmp_path->ant)) || ft_isdigit(*(tmp_path->next->ant)))
+	if (tmp_path && (!ft_isdigit(*(tmp_path->ant)) || (tmp_path->next && ft_isdigit(*(tmp_path->next->ant)))))
 		while (tmp_path->next && (tmp_path->busy != path ||
 					!ft_isdigit(*(tmp_path->next->ant))))
 			tmp_path = tmp_path->next;
 	tmp = tmp_path;
-	if (!tmp->next)
-		return (0);
 	while (tmp && tmp->busy == path)
 	{
 		tmp = tmp_path;
@@ -82,9 +81,6 @@ int			fill_result(t_lem *new_map, t_store *store, int *size_paths)
 	store->ants_strt = store->ants;
 	store->ants_end = 0;
 	store->ants = 1;
-	ft_putendl("new_map");
-	print_room(new_map);
-	ft_putendl("END");
 	while (*(size_paths + (path_nbr_max)) != -1)
 		path_nbr_max++;
 	while (store->ants_strt != 0)

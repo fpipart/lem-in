@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 12:05:24 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/07 16:31:37 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/08 14:05:33 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,15 @@ int			one_step(t_lem **lem, char *room, t_store *store, int step)
 	tmp = *lem;
 	while (!ft_strequ(tmp->room, room))
 		tmp = tmp->next;
-	ft_printf("store->start_end = %d, room= %s\n", store->start_end, room);
+	if (((tmp->len > step || tmp->len == -1) && tmp->busy == 0) ||
+			(ft_strequ(tmp->room, store->end) && tmp->len == 1))
+		tmp->len = step;
 	if (ft_strequ(store->end, room) && tmp->len == 1 && store->start_end == 0)
 	{
-		ft_putendl("RENTRE ICI ?");
 		store->start_end = 1;
 		return (1);
 	}
-	if ((tmp->len > step || tmp->len == -1) && tmp->busy == 0)
-		tmp->len = step;
-	if (ft_strequ(store->end, room) && tmp->len > 1)
+	if (ft_strequ(store->end, room) && tmp->len > 1 && step != 1)
 		return (1);
 	return (0);
 }
@@ -63,9 +62,7 @@ static int	find_paths(t_lem **lem, t_store *store)
 	{
 		if (select_room(lem, store, step))
 		{
-			ft_putendl("NEW PATH");
-			print_room(*lem);
-			ft_putendl("");
+		//	if (nbr_path != 0 || store->start_end != 1)
 			nbr_path++;
 			if (set_busy(lem, store->end, nbr_path, step))
 				return (1);
@@ -95,7 +92,7 @@ int			resolve(t_lem *lem, t_store *store)
 		return (1);
 	ft_bzero(tab, sizeof(int) * (path_nbr + 1));
 	reshape_map(lem, &new_map, store, path_nbr);
-	print_room(new_map);
+	store->ants_strt = store->ants;
 	choose_paths(new_map, store, path_nbr, &tab);
 	fill_result(new_map, store, tab);
 	free(tab);

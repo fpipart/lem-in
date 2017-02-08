@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 15:00:22 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/07 16:25:04 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/08 12:08:44 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int		set_busy(t_lem **lem, char *room, int end_index, int step)
 	while (lst)
 	{
 		tmp2 = find_linked_rm(lst->content, lem);
-		if (tmp2->len == 0)
+		if (tmp2->len == 0 && step == 1)
 			return (0);
 		else if (tmp2->len == step - 1 && tmp2->busy == 0)
 			return (set_busy(lem, tmp2->room, end_index, step - 1));
