@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 10:44:07 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/09 10:40:50 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/09 16:39:45 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ static int	move_ant_one_path(t_lem *new_map, int path, t_store *store)
 		tmp_path = tmp_path->next;
 	if (tmp_path && (!ft_isdigit(*(tmp_path->ant)) ||
 				(tmp_path->next && ft_isdigit(*(tmp_path->next->ant)))))
-		while (tmp_path->next && (tmp_path->busy != path ||
-					!ft_isdigit(*(tmp_path->next->ant))))
+		while (tmp_path->next && (tmp_path->next->busy == path &&
+					!ft_isdigit(*(tmp_path->ant))))
 			tmp_path = tmp_path->next;
 	tmp = tmp_path;
 	while (tmp && tmp->busy == path)

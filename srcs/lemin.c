@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 14:28:17 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/09 11:59:07 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/09 17:58:25 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,11 @@ static int	store_input(t_store *store, t_lem **lem)
 		if (line[0] == '#' || line[0] == 'L')
 			command(line, store);
 		else
+		{
 			error += select_parsing_f(store, line, lem);
+			if (error == 0)
+				ft_putendl(line);
+		}
 		free(line);
 	}
 	return (0);
@@ -93,6 +97,7 @@ int			main(void)
 	lem = NULL;
 	store = init_store();
 	store_input(&store, &lem);
+	ft_putchar('\n');
 	if (check_validity(store, lem))
 		return (0);
 	if (lem)
