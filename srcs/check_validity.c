@@ -6,13 +6,13 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/07 11:11:50 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/07 15:45:17 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/09 10:15:31 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-static int check_start_end(t_store store, t_lem *lem)
+static	int	check_start_end(t_store store, t_lem *lem)
 {
 	t_lem	*tmp;
 	int		end;
@@ -37,16 +37,16 @@ static int check_start_end(t_store store, t_lem *lem)
 	return (0);
 }
 
-int		check_validity(t_store store, t_lem *lem)
+int			check_validity(t_store store, t_lem *lem)
 {
 	if (check_start_end(store, lem))
 		return (1);
 	return (0);
 }
 
-int		check_path(t_store *store, t_lem *lem)
+int			check_path(t_store *store, t_lem *lem)
 {
-	t_lem *tmp;
+	t_lem	*tmp;
 
 	tmp = lem;
 	while (tmp)
@@ -61,7 +61,7 @@ int		check_path(t_store *store, t_lem *lem)
 	return (1);
 }
 
-void	print_error(void)
+void		print_error(void)
 {
 	ft_putendl("ERROR");
 }

@@ -6,20 +6,19 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 10:11:50 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/08 16:42:26 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/09 11:28:10 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-static int	insert_new_ant(t_lem *new_map, t_store *store, int path_nbr)
+static int		insert_new_ant(t_lem *new_map, t_store *store, int path_nbr)
 {
 	t_lem	*tmp;
 	int		i;
 
 	i = 1;
 	tmp = new_map;
-	//while (tmp && tmp->busy <= path_nbr)
 	while (i <= path_nbr)
 	{
 		tmp = new_map;
@@ -31,14 +30,13 @@ static int	insert_new_ant(t_lem *new_map, t_store *store, int path_nbr)
 			print_ant_position(tmp->ant, tmp->room);
 			store->ants++;
 			store->ants_strt--;
-	//	ft_printf("\ni = %d, path_nbr = %d\n", i, path_nbr);
 		}
 		i++;
 	}
 	return (path_nbr);
 }
 
-int			move_ants(t_lem *new_map, t_store *store, int *size_paths,
+int				move_ants(t_lem *new_map, t_store *store, int *size_paths,
 		int path_nbr_max)
 {
 	int	path_nbr;
@@ -47,7 +45,25 @@ int			move_ants(t_lem *new_map, t_store *store, int *size_paths,
 	return (insert_new_ant(new_map, store, path_nbr));
 }
 
-static int	move_one_tube(t_lem **tmp_path, t_store *store)
+static	void	handle_step0(t_lem **tmp, t_store *store)
+{
+	while ((*tmp)->next && *((*tmp)->next->ant) != '\0' &&
+			(*tmp)->next->busy == (*tmp)->busy)
+		(*tmp) = (*tmp)->next;
+	if ((*tmp)->next && (*tmp)->busy == (*tmp)->next->busy)
+	{
+		ft_strcpy((*tmp)->next->ant, (*tmp)->ant);
+		print_ant_position((*tmp)->next->ant, (*tmp)->next->room);
+	}
+	else if (!(*tmp)->next || (*tmp)->next->busy != (*tmp)->busy)
+	{
+		store->ants_end++;
+		print_ant_position((*tmp)->ant, store->end);
+	}
+	ft_bzero((*tmp)->ant, 11);
+}
+
+static int		move_one_tube(t_lem **tmp_path, t_store *store)
 {
 	t_lem	*tmp;
 	int		step;
@@ -59,20 +75,7 @@ static int	move_one_tube(t_lem **tmp_path, t_store *store)
 		tmp = *tmp_path;
 		if (step == 0)
 		{
-			while (tmp->next && *(tmp->next->ant) != '\0' &&
-					tmp->next->busy == tmp->busy)
-				tmp = tmp->next;
-			if (tmp->next && tmp->busy == tmp->next->busy)
-			{
-				ft_strcpy(tmp->next->ant, tmp->ant);
-				print_ant_position(tmp->next->ant, tmp->next->room);
-			}
-			else if (!tmp->next || tmp->next->busy != tmp->busy)
-			{
-				store->ants_end++;
-				print_ant_position(tmp->ant, store->end);
-			}
-			ft_bzero(tmp->ant, 11);
+			handle_step0(&tmp, store);
 			step = 1;
 		}
 		else if (step == 1)
@@ -87,7 +90,8 @@ static int	move_one_tube(t_lem **tmp_path, t_store *store)
 	return (0);
 }
 
-int			move_ant_inside_end(t_lem **new_map, int path_nbr_max, t_store *store)
+int				move_ant_inside_end(t_lem **new_map, int path_nbr_max,
+		t_store *store)
 {
 	t_lem	*tmp;
 	int		path;
@@ -105,8 +109,6 @@ int			move_ant_inside_end(t_lem **new_map, int path_nbr_max, t_store *store)
 			tmp = tmp->next;
 		if (tmp)
 			move_one_tube(&tmp, store);
-//		else
-//			return (1);
 		path++;
 	}
 	return (store->ants_end - end_nbr);

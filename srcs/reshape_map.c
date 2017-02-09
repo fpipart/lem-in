@@ -6,13 +6,13 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 14:18:48 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/06 18:13:37 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/09 10:41:31 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-static void	push_back(t_lem **path, t_lem *new_node)
+static void		push_back(t_lem **path, t_lem *new_node)
 {
 	t_lem *tmp;
 
@@ -44,7 +44,8 @@ static t_lem	*new_node(t_lem *lem)
 	return (node);
 }
 
-int		reshape_map(t_lem *lem, t_lem **new_map, t_store *store, int path_nbr)
+int				reshape_map(t_lem *lem, t_lem **new_map, t_store *store,
+		int path_nbr)
 {
 	int		i;
 	int		j;

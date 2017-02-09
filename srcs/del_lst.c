@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 16:09:05 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/28 13:50:42 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/09 10:20:41 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,7 @@ static int	del_lem(t_lem **lst)
 		while (lst1->next)
 		{
 			lst2 = lst1->next;
-			//		free(&lst1->crd_x);
-			//		free(&lst1->crd_y);
 			free(&lst1->room);
-			//		free(&lst1);
 			lst1 = lst2;
 		}
 	}
@@ -69,12 +66,11 @@ static int	del_lem(t_lem **lst)
 	return (0);
 }
 
-void	del_lst(t_lem **lem)
+void		del_lst(t_lem **lem)
 {
 	t_lem *tmp;
 
 	tmp = *lem;
 	del_tube_each_room(lem);
 	del_lem(lem);
-	//	del_lem(cmd);
 }

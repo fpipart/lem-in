@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 12:05:24 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/08 14:05:33 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/09 10:13:17 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ static int	find_paths(t_lem **lem, t_store *store)
 	{
 		if (select_room(lem, store, step))
 		{
-		//	if (nbr_path != 0 || store->start_end != 1)
 			nbr_path++;
 			if (set_busy(lem, store->end, nbr_path, step))
 				return (1);

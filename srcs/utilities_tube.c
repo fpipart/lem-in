@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 12:04:12 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/06 12:44:22 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/09 11:28:36 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	findroom_addtube(t_lem **lem, char *room, char *dest)
 	if (!tmp2)
 	{
 		new = ft_lstnew(dest, ft_strlen(dest) + 1);
-		ft_lstadd(&tmp1->lst, new); 
+		ft_lstadd(&tmp1->lst, new);
 	}
 	return (0);
 }

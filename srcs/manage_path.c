@@ -6,13 +6,13 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/30 12:07:27 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/06 17:19:35 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/09 10:25:12 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-static int count_path(t_list *start, t_list *end)
+static int	count_path(t_list *start, t_list *end)
 {
 	t_list	*tmp;
 	int		i;
@@ -37,7 +37,7 @@ static int count_path(t_list *start, t_list *end)
 	return (j);
 }
 
-int		nbr_path_max(t_lem *lem, t_store *store)
+int			nbr_path_max(t_lem *lem, t_store *store)
 {
 	t_lem	*start;
 	t_lem	*end;

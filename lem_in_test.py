@@ -8,6 +8,7 @@ import re
 
 def test_0():
 	print "  "
+	# ERROR
 
 def test_1_1():
 	 print "3\n2 5 0\n##start\n0 1 2\n##end\n1 9 2\n3 5 4\n0-2\n0-3\n2-1\n3-1\n2-3"
@@ -18,13 +19,15 @@ def test_1_1():
 def test_1_2():
 	 print "3\n2 5 0\n##start\n0 1 2\n##end\n1 9 2\n3 5 4\n0-1\n0-2\n0-3\n2-1\n3-1\n2-3"
 # Cas a gerer : Liaison direct start_end + 2 chemin de longeur 2
+	 #L1-1 L2-3 L3-2
+	 #L2-1 L3-1
 
 def test_1_2_bis():
 	 print "29\n2 5 0\n##start\n0 1 2\n##end\n1 9 2\n3 5 4\n0-1\n0-2\n0-3\n2-1\n3-1\n2-3"
 # Cas a gerer : Liaison direct start_end + 2 chemin de longeur 2
 
 def test_1():
-	 print "3\n##start\n0 1 0\n##end\n1 5 0\n2 9 0\n3 13 0\n0-2\n2-3\n3-1"
+	 print "3\n##start\n0 1 0\n##end\nend 5 0\n2 9 0\n3 13 0\n0-2\n2-3\n3-end"
  
 def test_2():
 	 print "3\nlol##start\n0 1 0\n##end\n1 5 0\n2 9 0\n3 13 0\n0-2\n2-3\n3-1"
@@ -53,6 +56,10 @@ def test_8():
 	 print "3\n##start\n0 1 0\n##end\n1 5 0\n2 9 0\n3 13 0\n0-2\n2-3\npasbon-0\n3-1"
 # INFO : Erreur Tube invalide 
 
+def test_9():
+	 print "3\n##start\n0 1 0\n##end\n1 5 0\n2 9 0\n3 13 0\n0-2\n2-3\n3-1\npasbon-0\n3-1"
+# INFO : Erreur Tube invalide 
+
 def test_10():
 	 print "3\n##start\n0 1 0\n1 5 0\n2 9 0\n##end\n3 13 0\n0-2\n2-3\n3-1"
 # 0 2 3 1
@@ -61,6 +68,7 @@ def test_11():
 
 def test_12():
 	 print "12\n##start\n1 23 3\n2 16 7\n#commentaire\n3 16 3\n4 16 5\n5 9 3\n6 1 5\n7 4 8\n##end\n0 9 5\n0-4\n0-6\n1-3\n4-3\n5-2\n3-5\n#autre commentaire\n4-2\n2-1\n7-6\n7-2\n7-4"
+#Suppression d'un chemin
 
 def test_13():
 	 print "12\n##start\n1 23 3\n2 16 7\n#commentaire\n3 16 3\n4 16 5\n5 9 3\n6 1 5\n7 4 8\n##end\n0 9 5\n0-4\n0-6\n1-3\n4-3\n5-2\n3-5\n#autre commentaire\n4-2\n2-1\n7-6\n7-2\n7-4\n6-5\n1-0"
@@ -83,6 +91,7 @@ if (len(sys.argv) == 1):
     #test_6()
     #test_7()
     #test_8()
+    #test_9()
     #test_10()
     #test_11()
     #test_12()

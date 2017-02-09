@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/04 16:30:44 by fpipart           #+#    #+#             */
-/*   Updated: 2017/01/23 14:18:32 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/09 10:24:41 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	check_int(char *str, int sgn)
 	int i;
 
 	i = 0;
-	while (	str[i] < '0' || str[i] > '9')
+	while (str[i] < '0' || str[i] > '9')
 		str++;
 	while (str[i] >= '0' && str[i] <= '9')
 		i++;
@@ -32,7 +32,7 @@ static int	check_int(char *str, int sgn)
 	return (1);
 }
 
-int		ft_atoi_checker(char *str, int *error)
+int			ft_atoi_checker(char *str, int *error)
 {
 	int i;
 	int sgn;

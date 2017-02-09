@@ -6,13 +6,14 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 15:00:22 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/08 12:08:44 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/09 10:24:04 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-static int	continue_extrem_node(t_lem **lem, t_lem *tmp, t_store *store, int step)
+static int	continue_extrem_node(t_lem **lem, t_lem *tmp, t_store *store,
+		int step)
 {
 	t_list	*lst;
 
@@ -33,7 +34,6 @@ int			select_room(t_lem **lem, t_store *store, int step)
 	tmp = *lem;
 	while (tmp)
 	{
-	//	ft_printf("step - 1 = %d, tmp->len = %d, tmp->room = %s\n", step - 1, tmp->len, tmp->room);
 		if (tmp->len == step - 1 && tmp->busy == 0)
 			if (continue_extrem_node(lem, tmp, store, step))
 				return (1);
@@ -42,7 +42,7 @@ int			select_room(t_lem **lem, t_store *store, int step)
 	return (0);
 }
 
-t_lem	*find_linked_rm(char *room, t_lem **lem)
+t_lem		*find_linked_rm(char *room, t_lem **lem)
 {
 	t_lem *tmp;
 
@@ -56,7 +56,7 @@ t_lem	*find_linked_rm(char *room, t_lem **lem)
 	return (tmp);
 }
 
-int		set_busy(t_lem **lem, char *room, int end_index, int step)
+int			set_busy(t_lem **lem, char *room, int end_index, int step)
 {
 	t_lem	*tmp;
 	t_lem	*tmp2;
@@ -83,7 +83,7 @@ int		set_busy(t_lem **lem, char *room, int end_index, int step)
 	return (1);
 }
 
-void	restart_len(t_lem **lem)
+void		restart_len(t_lem **lem)
 {
 	t_lem	*tmp;
 

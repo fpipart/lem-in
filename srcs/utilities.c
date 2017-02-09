@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 11:42:59 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/07 16:33:38 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/09 11:31:21 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,29 +62,12 @@ int			addelem(t_lem **old, t_lem *new, t_store *store)
 		addtolist(old, new, store);
 	else
 		*old = new;
-//	if (ft_strequ(store->cmd, "start") || ft_strequ(store->cmd, "end"))
-//		ft_strcpy((*old)->cmd, store->cmd);
 	if (*store->cmd != '\0')
 		ft_bzero(store->cmd, 6);
 	return (0);
 }
 
-void		print_room(t_lem *room)
-{
-	t_lem	*tmp;
-
-	if (room)
-	{
-		tmp = room;
-		while (tmp)
-		{
-			ft_printf("ROOM = $%s$ len = %d, busy = %d, node->ants = %s\n", tmp->room, tmp->len, tmp->busy, tmp->ant);
-			tmp = tmp->next;
-		}
-	}
-}
-
-t_store	init_store(void)
+t_store		init_store(void)
 {
 	t_store store;
 
@@ -99,7 +82,7 @@ t_store	init_store(void)
 	return (store);
 }
 
-void	free_tab(char **tab, int word)
+void		free_tab(char **tab, int word)
 {
 	int i;
 
