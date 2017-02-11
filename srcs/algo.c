@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 12:05:24 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/09 17:55:48 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/11 14:49:50 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static int	find_paths(t_lem **lem, t_store *store)
 	return (nbr_path);
 }
 
-int			resolve(t_lem *lem, t_store *store)
+int			resolve(t_lem *lem, t_store *store, t_list *lst)
 {
 	int		path_nbr;
 	int		*tab;
@@ -87,6 +87,7 @@ int			resolve(t_lem *lem, t_store *store)
 	path_nbr = find_paths(&lem, store);
 	if (path_nbr == -1)
 		return (1);
+	print_map(lem, store, lst);
 	if (!(tab = (int*)malloc(sizeof(int) * (path_nbr + 1))))
 		return (1);
 	ft_bzero(tab, sizeof(int) * (path_nbr + 1));

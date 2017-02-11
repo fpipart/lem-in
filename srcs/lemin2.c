@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 11:38:40 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/09 18:01:20 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/11 14:08:30 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,9 @@
 int			command(char *line, t_store *store)
 {
 	if (ft_strequ("##start", line))
-	{
 		ft_strcpy(store->cmd, "start");
-		ft_putendl(line);
-	}
 	else if (ft_strequ("##end", line))
-	{
 		ft_strcpy(store->cmd, "end");
-		ft_putendl(line);
-	}
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 14:28:17 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/09 17:58:25 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/11 14:50:12 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static int	select_parsing_f(t_store *store, char *line, t_lem **lem)
 	return (f[(store)->step](store, line, lem));
 }
 
-static int	store_input(t_store *store, t_lem **lem)
+static int	store_input(t_store *store, t_lem **lem, t_list **lst)
 {
 	char		*line;
 	int			error;
@@ -81,8 +81,13 @@ static int	store_input(t_store *store, t_lem **lem)
 		else
 		{
 			error += select_parsing_f(store, line, lem);
-			if (error == 0)
-				ft_putendl(line);
+			if (error == 0 && ft_wordcount(line, '-') == 2)
+			{
+				if (!*lst)
+					*lst = ft_lstnew(line, ft_strlen(line) + 1);
+				else if (lst)
+					ft_lstadd(lst, ft_lstnew(line, ft_strlen(line) + 1));
+			}
 		}
 		free(line);
 	}
@@ -93,15 +98,16 @@ int			main(void)
 {
 	t_store store;
 	t_lem	*lem;
+	t_list	*lst;
 
 	lem = NULL;
+	lst = NULL;
 	store = init_store();
-	store_input(&store, &lem);
-	ft_putchar('\n');
+	store_input(&store, &lem, &lst);
 	if (check_validity(store, lem))
 		return (0);
 	if (lem)
-		resolve(lem, &store);
+		resolve(lem, &store, lst);
 	del_lst(&lem);
 	return (0);
 }

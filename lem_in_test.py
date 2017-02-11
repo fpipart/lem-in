@@ -83,7 +83,8 @@ def test_14():
 def test_20():
 	print "50\n##start\n1 1 1\n2 2 2\n3 3 3\n4 4 4\n5 5 5\n7 7 7\n8 8 8\n9 9 9\n10 10 10\n11 11 11\n12 12 12\n13 13 13\n14 14 14\n15 15 15\n16 16 16\n##end\nend 6 6\n17 17 17\n1-2\n2-3\n3-4\n4-5\n5-7\n7-8\n8-9\n9-10\n10-11\n11-12\n12-13\n13-14\n14-15\n15-16\n16-end\nend-17\n17-1\n"
 
-## 1_2
+def test_21():
+	print "50\n##start\n1 1 1\n2 2 2\n3 3 3\n4 4 4\n5 5 5\n7 7 7\n8 8 8\n9 9 9\n10 10 10\n11 11 11\n12 12 12\n13 13 13\n14 14 14\n15 15 15\n16 16 16\n##end\nend 6 6\n17 17 17\n1-2\n2-3\n3-4\n4-5\n5-7\n7-8\n8-9\n9-10\n10-11\n11-12\n12-13\n13-14\n14-15\n15-16\n16-end\nend-1\n"
 
 if (len(sys.argv) == 1):
 	#test_0()
@@ -95,14 +96,15 @@ if (len(sys.argv) == 1):
 	#test_2()
 	#test_3()
 	#test_4()
-    #test_5()
-    #test_6()
-    #test_7()
-    #test_8()
-    #test_9()
-    #test_10()
-    #test_11()
-    #test_12()
-    #test_13()
-    #test_14()
-	test_20()
+	#test_5()
+	#test_6()
+	#test_7()
+	#test_8()
+	#test_9()
+	#test_10()
+	#test_11()
+	#test_12()
+	#test_13()
+	#test_14()
+	#test_20()
+	test_21()

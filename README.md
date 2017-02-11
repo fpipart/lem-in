@@ -22,3 +22,8 @@ nbr coup = nbr coup - len2
 nbr coup > len3
 chemin len1 len2 len 3
 nbr = nbr - len3 ...
+
+
+VERIF
+
+Regarder si apres avoir ecrase une room un tube avec l'ancienne room renvoie bien une erreur

@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 12:05:04 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/09 15:54:45 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/11 14:04:22 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void					del_lst(t_lem **lem);
 /*
 **		algo.c
 */
-int						resolve(t_lem *lem, t_store *store);
+int						resolve(t_lem *lem, t_store *store, t_list *lst);
 int						one_step(t_lem **lem, char *room, t_store *store,
 		int step);
 /*
@@ -118,6 +118,7 @@ int						move_ant_inside_end(t_lem **new_map,
 **		display_resolution.c
 */
 int						print_ant_position(char *ant, char *room);
+void					print_map(t_lem *lem, t_store *store, t_list *lst);
 /*
 **		handle_ant_s_to_e.c
 */
