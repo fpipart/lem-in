@@ -79,15 +79,13 @@ static int	store_input(t_store *store, t_lem **lem, t_list **lst)
 		if (line[0] == '#' || line[0] == 'L')
 			command(line, store);
 		else
-		{
 			error += select_parsing_f(store, line, lem);
-			if (error == 0 && ft_wordcount(line, '-') == 2)
-			{
-				if (!*lst)
-					*lst = ft_lstnew(line, ft_strlen(line) + 1);
-				else if (lst)
-					ft_lstadd(lst, ft_lstnew(line, ft_strlen(line) + 1));
-			}
+		if (error == 0 && line[0] != 'L')
+		{
+			if (!*lst)
+				*lst = ft_lstnew(line, ft_strlen(line) + 1);
+			else if (lst)
+				ft_lstadd(lst, ft_lstnew(line, ft_strlen(line) + 1));
 		}
 		free(line);
 	}

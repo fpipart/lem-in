@@ -70,6 +70,9 @@ def test_10():
 def test_11():
 	 print "12\n##start\n1 23 3\n2 16 7\n#commentaire\n3 16 3\n4 16 5\n5 9 3\n6 1 5\n7 4 8\n##end\n0 9 5\n0-4\n0-6\n1-3\n4-3\n5-2\n3-5\n#autre commentaire\n4-2\n2-1\n7-6\n7-2\n7-4\n6-5"
 
+def test_11_bis():
+	 print "2\n##start\n1 23 3\n2 16 7\n#commentaire\n3 16 3\n4 16 5\n5 9 3\n6 1 5\n7 4 8\n##end\n0 9 5\n0-4\n0-6\n1-3\n4-3\n5-2\n3-5\n#autre commentaire\n4-2\n2-1\n7-6\n7-2\n7-4\n6-5"
+
 def test_12():
 	 print "12\n##start\n1 23 3\n2 16 7\n#commentaire\n3 16 3\n4 16 5\n5 9 3\n6 1 5\n7 4 8\n##end\n0 9 5\n0-4\n0-6\n1-3\n4-3\n5-2\n3-5\n#autre commentaire\n4-2\n2-1\n7-6\n7-2\n7-4"
 #Suppression d'un chemin
@@ -86,6 +89,9 @@ def test_20():
 def test_21():
 	print "50\n##start\n1 1 1\n2 2 2\n3 3 3\n4 4 4\n5 5 5\n7 7 7\n8 8 8\n9 9 9\n10 10 10\n11 11 11\n12 12 12\n13 13 13\n14 14 14\n15 15 15\n16 16 16\n##end\nend 6 6\n17 17 17\n1-2\n2-3\n3-4\n4-5\n5-7\n7-8\n8-9\n9-10\n10-11\n11-12\n12-13\n13-14\n14-15\n15-16\n16-end\nend-1\n"
 
+def test_30():
+        print "10\n##start\nstart 0 0\n##end\nend 1 1\nstart-end"
+
 if (len(sys.argv) == 1):
 	#test_0()
 	#test_1_1()
@@ -93,7 +99,7 @@ if (len(sys.argv) == 1):
 	#test_1_2_bis()
 	#test_1_3()
 	#test_1()
-	#test_2()
+	##test_2()
 	#test_3()
 	#test_4()
 	#test_5()
@@ -103,8 +109,10 @@ if (len(sys.argv) == 1):
 	#test_9()
 	#test_10()
 	#test_11()
+	#test_11_bis()
 	#test_12()
-	#test_13()
+        #test_13()
 	#test_14()
 	#test_20()
-	test_21()
+	#test_21()
+        test_30()

@@ -58,7 +58,7 @@ static int	find_paths(t_lem **lem, t_store *store)
 	nbr_max = nbr_path_max(*lem, store);
 	if (set_start(lem, store))
 		return (-1);
-	while (nbr_path < nbr_max && step <= store->ants)
+	while (nbr_path < nbr_max && step <= store->nbr_rm)
 	{
 		if (select_room(lem, store, step))
 		{
@@ -87,7 +87,7 @@ int			resolve(t_lem *lem, t_store *store, t_list *lst)
 	path_nbr = find_paths(&lem, store);
 	if (path_nbr == -1)
 		return (1);
-	print_map(lem, store, lst);
+	print_map(lst);
 	if (!(tab = (int*)malloc(sizeof(int) * (path_nbr + 1))))
 		return (1);
 	ft_bzero(tab, sizeof(int) * (path_nbr + 1));

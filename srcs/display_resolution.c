@@ -31,7 +31,8 @@ static int	sizeof_lst(t_list *lst)
 	return (i);
 }
 
-static void	print_tube(t_list *lst)
+//static void	print_tube(t_list *lst)
+void	print_map(t_list *lst)
 {
 	t_list	*tmp;
 	int		i;
@@ -54,7 +55,7 @@ static void	print_tube(t_list *lst)
 	}
 	ft_putchar('\n');
 }
-
+/*
 static int	sizeof_lem(t_lem *lem)
 {
 	int i;
@@ -94,4 +95,4 @@ void		print_map(t_lem *lem, t_store *store, t_list *lst)
 		ft_printf("%s %d %d\n", tmp->room, tmp->crd_x, tmp->crd_y);
 	}
 	print_tube(lst);
-}
+}*/

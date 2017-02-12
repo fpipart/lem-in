@@ -118,7 +118,7 @@ int						move_ant_inside_end(t_lem **new_map,
 **		display_resolution.c
 */
 int						print_ant_position(char *ant, char *room);
-void					print_map(t_lem *lem, t_store *store, t_list *lst);
+void					print_map(t_list *lst);
 /*
 **		handle_ant_s_to_e.c
 */
