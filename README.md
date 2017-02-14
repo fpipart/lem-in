@@ -27,3 +27,7 @@ nbr = nbr - len3 ...
 VERIF
 
 Regarder si apres avoir ecrase une room un tube avec l'ancienne room renvoie bien une erreur
+
+Attention bug avec 2 fourmis pour la map de l'enonce
+
+Attention : afficher les commentaires et les commandes lors de la resolution

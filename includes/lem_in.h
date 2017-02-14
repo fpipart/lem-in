@@ -6,7 +6,7 @@
 /*   By: fpipart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 12:05:04 by fpipart           #+#    #+#             */
-/*   Updated: 2017/02/11 14:04:22 by fpipart          ###   ########.fr       */
+/*   Updated: 2017/02/14 14:15:07 by fpipart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # include "../libft/libft.h"
 # include <stdlib.h>
+
+
+/* COLOR = "true" or "false" */
+# define COLOR "false"
 
 typedef struct			s_lem
 {
